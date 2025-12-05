@@ -1,24 +1,12 @@
 import { Phone, MessageSquare, Bot, CheckCircle } from "lucide-react";
 import heroBg from "@/assets/hero-bg.png";
 import HeroForm from "./HeroForm";
-
-const benefits = [
-  "AI-Powered Voice & Chat",
-  "WhatsApp, Email, SMS Integration",
-  "Real-time Analytics Dashboard",
-  "24/7 Dedicated Support"
-];
-
+const benefits = ["AI-Powered Voice & Chat", "WhatsApp, Email, SMS Integration", "Real-time Analytics Dashboard", "24/7 Dedicated Support"];
 const HeroSection = () => {
-  return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+  return <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Darker Background */}
       <div className="absolute inset-0 bg-secondary">
-        <img 
-          src={heroBg} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-lighten"
-        />
+        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-lighten" />
         <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/80" />
         <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent" />
       </div>
@@ -46,10 +34,7 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="text-center lg:text-left">
             <div className="animate-fade-in-up">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium mb-6">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                AI-Powered Contact Center
-              </span>
+              
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary-foreground leading-tight mb-6 animate-fade-in-up animation-delay-100">
@@ -63,12 +48,10 @@ const HeroSection = () => {
             
             {/* Benefits list */}
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 animate-fade-in-up animation-delay-300">
-              {benefits.map((benefit) => (
-                <li key={benefit} className="flex items-center gap-2 text-secondary-foreground/80">
+              {benefits.map(benefit => <li key={benefit} className="flex items-center gap-2 text-secondary-foreground/80">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-sm">{benefit}</span>
-                </li>
-              ))}
+                </li>)}
             </ul>
             
             {/* Trust badges */}
@@ -98,8 +81,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;

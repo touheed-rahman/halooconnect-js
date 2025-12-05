@@ -8,13 +8,11 @@ import ContactForm from "@/components/ContactForm";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
-
 const Index = () => {
-  return (
-    <main className="min-h-screen">
+  return <main className="min-h-screen">
       <Header />
       <HeroSection />
-      <StatsSection />
+      
       <FeaturesSection />
       <ChannelsSection />
       <TestimonialsSection />
@@ -22,8 +20,6 @@ const Index = () => {
       <CTASection />
       <Footer />
       <FloatingCTA />
-    </main>
-  );
+    </main>;
 };
-
 export default Index;
