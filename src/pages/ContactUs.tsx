@@ -25,7 +25,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Office",
-    details: ["India", "Singapore", "UAE"],
+    details: ["Singapore", "UAE","India"],
   },
   {
     icon: Clock,
