@@ -15,7 +15,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    details: ["+91-9886620544", "+65 8376 5007", "+971-508293464"],
+    details: ["+971-508293464", "+65-8376 5007", "+91-9513391279"],
   },
   {
     icon: Mail,
@@ -150,7 +150,7 @@ const ContactUs = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
-                      <p className="text-muted-foreground">+91-9886620544</p>
+                      <p className="text-muted-foreground">+91 9513391279</p>
                     </div>
                   </div>
 
