@@ -15,17 +15,17 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    details: ["+91-9886620544", "+91-9972732222", "+1 254 433 48679"],
+    details: ["+91-9886620544", "+65 8376 5007", "+971-508293464"],
   },
   {
     icon: Mail,
     title: "Email",
-    details: ["enquiry@haloocom.com", "touheed.rahman@haloocom.com"],
+    details: ["enquiry@haloocom.com"],
   },
   {
     icon: MapPin,
     title: "Office",
-    details: ["Bangalore, India", "Singapore", "UAE"],
+    details: ["India", "Singapore", "UAE"],
   },
   {
     icon: Clock,
@@ -151,7 +151,6 @@ const ContactUs = () => {
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
                       <p className="text-muted-foreground">+91-9886620544</p>
-                      <p className="text-muted-foreground">+91-9972732222</p>
                     </div>
                   </div>
 
