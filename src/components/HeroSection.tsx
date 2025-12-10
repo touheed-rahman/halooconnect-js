@@ -1,6 +1,11 @@
+// HeroSection.jsx (or .tsx if using TypeScript)
+import React from "react";
+import Image from "next/image"; // Next.js image optimisation (use only if you're on Next)
 import { CheckCircle } from "lucide-react";
-import heroBg from "@/assets/hero-bg.png";
 import HeroForm from "./HeroForm";
+// If your build doesn't support the `@` alias, change the import below to a proper relative path.
+// Example: import heroBg from "../../assets/hero-bg.png";
+import heroBg from "@/assets/hero-bg.png";
 
 const benefits = [
   "AI-Powered Voice & Chat",
@@ -22,24 +27,29 @@ const HeroSection = () => {
         overflow-hidden
       "
     >
-      {/* Background with contact center image + dark overlay */}
-      <div className="absolute inset-0">
-        <img
+      {/* Background image + overlays (pointer-events-none so it won't intercept clicks) */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        {/* Use Next/Image for optimization; if heroBg is a string path this still works */}
+        <Image
           src={heroBg}
           alt="Contact center background"
-          className="w-full h-full object-cover"
+          fill
+          style={{ objectFit: "cover" }}
+          priority={true}
         />
-        {/* Dark overlay to improve text visibility */}
-        <div className="absolute inset-0 bg-secondary/90" />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent" />
+
+        {/* Overlays stacked to improve contrast */}
+        <div className="absolute inset-0 bg-secondary/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent pointer-events-none" />
       </div>
 
-      {/* Content */}
+      {/* Content (z-10 so it sits above overlays) */}
       <div className="container relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left">
+            {/* Keep animation container if you have css for it */}
             <div className="animate-fade-in-up" />
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary-foreground leading-tight mb-6 animate-fade-in-up animation-delay-100">
@@ -60,6 +70,7 @@ const HeroSection = () => {
                   key={benefit}
                   className="flex items-center gap-2 text-secondary-foreground/80"
                 >
+                  {/* lucide-react SVG accepts className */}
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-sm">{benefit}</span>
                 </li>
@@ -77,7 +88,9 @@ const HeroSection = () => {
                     Global Users
                   </div>
                 </div>
+
                 <div className="w-px h-10 bg-secondary-foreground/20" />
+
                 <div className="text-center">
                   <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">
                     500+
@@ -86,7 +99,9 @@ const HeroSection = () => {
                     Happy Clients
                   </div>
                 </div>
+
                 <div className="w-px h-10 bg-secondary-foreground/20" />
+
                 <div className="text-center">
                   <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">
                     30MN+
@@ -95,7 +110,9 @@ const HeroSection = () => {
                     Calls/Month
                   </div>
                 </div>
+
                 <div className="w-px h-10 bg-secondary-foreground/20" />
+
                 <div className="text-center">
                   <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">
                     5+
@@ -119,3 +136,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
