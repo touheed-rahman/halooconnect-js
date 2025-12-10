@@ -43,8 +43,8 @@ const HeroSection = () => {
             <div className="animate-fade-in-up" />
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary-foreground leading-tight mb-6 animate-fade-in-up animation-delay-100">
-              Transform Your
-              <span className="block text-primary"> Customer Engagement</span>
+              Your Leap to AI Powered
+              <span className="block text-primary">Contact Centers</span>
             </h1>
 
             <p className="text-lg md:text-xl text-secondary-foreground/70 mb-8 max-w-xl mx-auto lg:mx-0 animate-fade-in-up animation-delay-200">
