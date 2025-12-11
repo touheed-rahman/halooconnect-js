@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/haloo-connect-logo.png";
-import { Phone, Mail, MapPin } from "lucide-react";
-
+import { Phone, Mail } from "lucide-react";
 const Footer = () => {
-  return (
-    <footer className="bg-secondary py-16">
+  return <footer className="bg-secondary py-16">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Logo & Description */}
@@ -120,8 +118,8 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-secondary-foreground/70 mt-0.5" />
-                <span className="text-secondary-foreground/70 text-sm">Bangalore, India</span>
+                
+                
               </li>
             </ul>
           </div>
@@ -141,8 +139,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
