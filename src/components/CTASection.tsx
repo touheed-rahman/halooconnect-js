@@ -1,16 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Zap, Phone, Calendar } from "lucide-react";
-
 const CTASection = () => {
-  const { t } = useTranslation();
-
+  const {
+    t
+  } = useTranslation();
   const scrollToForm = () => {
-    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("contact-form")?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
-
-  return (
-    <section className="py-20 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
+  return <section className="py-20 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary-foreground rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
@@ -41,19 +41,11 @@ const CTASection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <Button 
-              onClick={scrollToForm}
-              size="xl" 
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-elevated"
-            >
+            <Button onClick={scrollToForm} size="xl" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-elevated">
               <Calendar className="w-5 h-5" />
               {t("cta.scheduleDemo")}
             </Button>
-            <Button 
-              onClick={() => window.open('tel:+919876543210')}
-              size="xl" 
-              variant="heroOutline"
-            >
+            <Button onClick={() => window.open('tel:+919876543210')} size="xl" variant="heroOutline">
               <Phone className="w-5 h-5" />
               {t("cta.callUs")}
             </Button>
@@ -63,27 +55,20 @@ const CTASection = () => {
           <div className="flex flex-wrap items-center justify-center gap-6 text-primary-foreground/60 text-sm">
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
               {t("cta.noCreditCard")}
             </span>
+            
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-              </svg>
-              {t("cta.freeTrial")}
-            </span>
-            <span className="flex items-center gap-2">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
               {t("cta.cancelAnytime")}
             </span>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CTASection;
