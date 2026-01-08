@@ -10,7 +10,7 @@ declare global {
 }
 
 // Site key is public and can be exposed in frontend
-const RECAPTCHA_SITE_KEY = "6LcVIFYrAAAAABBRQP8q4SdC_JMNO8pNaQxmhkP9";
+const RECAPTCHA_SITE_KEY = "6Ldk0kMsAAAAAEnAoEy7Ru7DcpLPJp5WCQmKxcBU";
 
 let isScriptLoaded = false;
 
