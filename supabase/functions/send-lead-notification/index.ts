@@ -20,8 +20,7 @@ interface LeadNotificationRequest {
 
 const handler = async (req: Request): Promise<Response> => {
   console.log("Received request to send lead notification");
-  
-  // Handle CORS preflight requests
+
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -32,7 +31,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const emailResponse = await resend.emails.send({
       from: "Haloo Connect <onboarding@resend.dev>",
-      to: ["touheed.rahman@haloocom.com", "levis.wilson@haloocom.com"],
+      to: ["levis.wilson@haloocom.com"], // ✅ only Levis
       subject: `New Lead from ${leadData.source}: ${leadData.name}`,
       html: `
         <!DOCTYPE html>
@@ -57,37 +56,40 @@ const handler = async (req: Request): Promise<Response> => {
             </div>
             <div class="content">
               <p>A new lead has been submitted from <strong>${leadData.source}</strong>:</p>
-              
+
               <div class="field">
                 <span class="label">Name:</span>
                 <span class="value">${leadData.name}</span>
               </div>
-              
+
               <div class="field">
                 <span class="label">Phone:</span>
                 <span class="value">${leadData.country_code} ${leadData.phone}</span>
               </div>
-              
+
               ${leadData.email ? `
               <div class="field">
                 <span class="label">Email:</span>
                 <span class="value">${leadData.email}</span>
               </div>
               ` : ''}
-              
+
               <div class="field">
                 <span class="label">Company:</span>
                 <span class="value">${leadData.company}</span>
               </div>
-              
+
               <div class="field">
                 <span class="label">Source:</span>
                 <span class="value">${leadData.source}</span>
               </div>
-              
+
               <div class="field">
                 <span class="label">Submitted At:</span>
-                <span class="value">${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</span>
+                <span class="value">${new Date().toLocaleString(
+                  "en-IN",
+                  { timeZone: "Asia/Kolkata" }
+                )}</span>
               </div>
             </div>
             <div class="footer">
@@ -101,13 +103,16 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Email sent successfully:", emailResponse);
 
-    return new Response(JSON.stringify({ success: true, data: emailResponse }), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        ...corsHeaders,
-      },
-    });
+    return new Response(
+      JSON.stringify({ success: true, data: emailResponse }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          ...corsHeaders,
+        },
+      }
+    );
   } catch (error: any) {
     console.error("Error in send-lead-notification function:", error);
     return new Response(
@@ -121,3 +126,4 @@ const handler = async (req: Request): Promise<Response> => {
 };
 
 serve(handler);
+
