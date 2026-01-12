@@ -1,23 +1,28 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import LocalizedHeroSection from "@/components/LocalizedHeroSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import ChannelsSection from "@/components/ChannelsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ContactForm from "@/components/ContactForm";
-import Footer from "@/components/Footer";
-import FloatingCTA from "@/components/FloatingCTA";
-import SecuritySection from "@/components/SecuritySection";
-import ClientsSection from "@/components/ClientsSection";
-import SentimentSection from "@/components/SentimentSection";
-import HexaAISection from "@/components/HexaAISection";
-import BusinessIntelligenceSection from "@/components/BusinessIntelligenceSection";
-import HexaPerformanceSection from "@/components/HexaPerformanceSection";
-import DeploymentSection from "@/components/DeploymentSection";
-import LocalizedOutcomesSection from "@/components/LocalizedOutcomesSection";
-import LocalizedTopFeaturesSection from "@/components/LocalizedTopFeaturesSection";
-import LocalizedCTASection from "@/components/LocalizedCTASection";
-import MidPageCTA from "@/components/MidPageCTA";
 import SEOHead from "@/components/SEOHead";
+
+const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
+const ChannelsSection = lazy(() => import("@/components/ChannelsSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const ContactForm = lazy(() => import("@/components/ContactForm"));
+const Footer = lazy(() => import("@/components/Footer"));
+const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
+const SecuritySection = lazy(() => import("@/components/SecuritySection"));
+const ClientsSection = lazy(() => import("@/components/ClientsSection"));
+const SentimentSection = lazy(() => import("@/components/SentimentSection"));
+const HexaAISection = lazy(() => import("@/components/HexaAISection"));
+const BusinessIntelligenceSection = lazy(() => import("@/components/BusinessIntelligenceSection"));
+const HexaPerformanceSection = lazy(() => import("@/components/HexaPerformanceSection"));
+const DeploymentSection = lazy(() => import("@/components/DeploymentSection"));
+const LocalizedOutcomesSection = lazy(() => import("@/components/LocalizedOutcomesSection"));
+const LocalizedTopFeaturesSection = lazy(() => import("@/components/LocalizedTopFeaturesSection"));
+const LocalizedCTASection = lazy(() => import("@/components/LocalizedCTASection"));
+const MidPageCTA = lazy(() => import("@/components/MidPageCTA"));
+const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
+
+const SectionLoader = () => <div className="min-h-[200px]" />;
 
 const singaporeContent = {
   country: "Singapore",
@@ -79,25 +84,28 @@ const SingaporeLanding = () => {
       <main className="min-h-screen">
         <Header />
         <LocalizedHeroSection {...singaporeContent} />
-        <LocalizedOutcomesSection country="Singapore" />
-        <LocalizedTopFeaturesSection country="Singapore" />
-        <MidPageCTA variant="secondary" country="Singapore" />
-        <SentimentSection />
-        <HexaAISection />
-        <MidPageCTA variant="primary" country="Singapore" />
-        <BusinessIntelligenceSection />
-        <HexaPerformanceSection />
-        <DeploymentSection />
-        <FeaturesSection />
-        <MidPageCTA variant="secondary" country="Singapore" />
-        <ChannelsSection />
-        <SecuritySection />
-        <ClientsSection />
-        <TestimonialsSection />
-        <ContactForm />
-        <LocalizedCTASection country="Singapore" />
-        <Footer />
-        <FloatingCTA />
+        <Suspense fallback={<SectionLoader />}>
+          <LocalizedOutcomesSection country="Singapore" />
+          <LocalizedTopFeaturesSection country="Singapore" />
+          <MidPageCTA variant="secondary" country="Singapore" />
+          <SentimentSection />
+          <HexaAISection />
+          <MidPageCTA variant="primary" country="Singapore" />
+          <BusinessIntelligenceSection />
+          <HexaPerformanceSection />
+          <DeploymentSection />
+          <FeaturesSection />
+          <MidPageCTA variant="secondary" country="Singapore" />
+          <ChannelsSection />
+          <SecuritySection />
+          <ClientsSection />
+          <TestimonialsSection />
+          <ContactForm />
+          <LocalizedCTASection country="Singapore" />
+          <Footer />
+          <FloatingCTA />
+          <ExitIntentPopup />
+        </Suspense>
       </main>
     </>
   );

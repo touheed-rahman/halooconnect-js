@@ -111,13 +111,13 @@ const HeroForm = ({ defaultCountryCode = "+91", fixedCountryCode = false }: Hero
   return (
     <div className="bg-card/98 backdrop-blur-lg rounded-2xl shadow-elevated border border-border/50 w-full max-w-md overflow-hidden">
       {/* Urgency Banner */}
-      <div className="bg-primary/10 border-b border-primary/20 px-4 py-2.5 flex items-center justify-center gap-2">
+      <div className="bg-secondary px-4 py-2.5 flex items-center justify-center gap-2">
         <div className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
         </div>
-        <span className="text-xs font-medium text-foreground">
-          <span className="font-bold text-primary">{recentActivity.count} people</span> from {recentActivity.city} requested demo today
+        <span className="text-xs font-medium text-white">
+          <span className="font-bold text-green-400">{recentActivity.count} people</span> from {recentActivity.city} requested demo today
         </span>
       </div>
 
@@ -214,20 +214,20 @@ const HeroForm = ({ defaultCountryCode = "+91", fixedCountryCode = false }: Hero
       </div>
 
       {/* Bottom Trust Bar */}
-      <div className="bg-muted/50 border-t border-border/50 px-4 py-3">
+      <div className="bg-secondary px-4 py-3">
         <div className="flex items-center justify-center gap-4">
           <div className="flex -space-x-2">
             {[1, 2, 3, 4].map((i) => (
               <div 
                 key={i} 
-                className="w-7 h-7 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-card flex items-center justify-center"
+                className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-red-400 border-2 border-secondary flex items-center justify-center"
               >
-                <span className="text-[8px] font-bold text-foreground/70">👤</span>
+                <span className="text-[10px] font-bold text-white">👤</span>
               </div>
             ))}
           </div>
-          <div className="text-xs text-muted-foreground">
-            <span className="font-semibold text-foreground">4.9/5</span> from 500+ reviews
+          <div className="text-sm text-white">
+            <span className="font-bold text-white">4.9/5</span> <span className="text-white/80">from 500+ reviews</span>
           </div>
         </div>
       </div>

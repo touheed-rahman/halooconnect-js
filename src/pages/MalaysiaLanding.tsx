@@ -1,22 +1,28 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import LocalizedHeroSection from "@/components/LocalizedHeroSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import ChannelsSection from "@/components/ChannelsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ContactForm from "@/components/ContactForm";
-import Footer from "@/components/Footer";
-import FloatingCTA from "@/components/FloatingCTA";
-import SecuritySection from "@/components/SecuritySection";
-import ClientsSection from "@/components/ClientsSection";
-import SentimentSection from "@/components/SentimentSection";
-import HexaAISection from "@/components/HexaAISection";
-import BusinessIntelligenceSection from "@/components/BusinessIntelligenceSection";
-import HexaPerformanceSection from "@/components/HexaPerformanceSection";
-import DeploymentSection from "@/components/DeploymentSection";
-import LocalizedOutcomesSection from "@/components/LocalizedOutcomesSection";
-import LocalizedTopFeaturesSection from "@/components/LocalizedTopFeaturesSection";
-import LocalizedCTASection from "@/components/LocalizedCTASection";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
+
+const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
+const ChannelsSection = lazy(() => import("@/components/ChannelsSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const ContactForm = lazy(() => import("@/components/ContactForm"));
+const Footer = lazy(() => import("@/components/Footer"));
+const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
+const SecuritySection = lazy(() => import("@/components/SecuritySection"));
+const ClientsSection = lazy(() => import("@/components/ClientsSection"));
+const SentimentSection = lazy(() => import("@/components/SentimentSection"));
+const HexaAISection = lazy(() => import("@/components/HexaAISection"));
+const BusinessIntelligenceSection = lazy(() => import("@/components/BusinessIntelligenceSection"));
+const HexaPerformanceSection = lazy(() => import("@/components/HexaPerformanceSection"));
+const DeploymentSection = lazy(() => import("@/components/DeploymentSection"));
+const LocalizedOutcomesSection = lazy(() => import("@/components/LocalizedOutcomesSection"));
+const LocalizedTopFeaturesSection = lazy(() => import("@/components/LocalizedTopFeaturesSection"));
+const LocalizedCTASection = lazy(() => import("@/components/LocalizedCTASection"));
+const MidPageCTA = lazy(() => import("@/components/MidPageCTA"));
+const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
+
+const SectionLoader = () => <div className="min-h-[200px]" />;
 
 const malaysiaContent = {
   country: "Malaysia",
@@ -41,36 +47,37 @@ const malaysiaContent = {
 const MalaysiaLanding = () => {
   return (
     <>
-      <Helmet>
-        <title>Best Call Center Software Malaysia | Cloud Contact Center Kuala Lumpur</title>
-        <meta
-          name="description"
-          content="Top cloud call center software in Malaysia. PDPA compliant contact center with Bahasa Melayu voice bot, omnichannel support, and AI-powered customer engagement."
-        />
-        <meta
-          name="keywords"
-          content="call center software Malaysia, contact center Kuala Lumpur, cloud call center Malaysia, customer service software Malaysia, AI call center Malaysia, PDPA compliant Malaysia, Bahasa Melayu voice bot, omnichannel Malaysia, cloud telephony Malaysia, IVR solutions KL"
-        />
-      </Helmet>
+      <SEOHead 
+        title="Best Call Center Software Malaysia | Cloud Contact Center Kuala Lumpur"
+        description="Top cloud call center software in Malaysia. PDPA compliant contact center with Bahasa Melayu voice bot, omnichannel support, and AI-powered customer engagement."
+        keywords="call center software Malaysia, contact center Kuala Lumpur, cloud call center Malaysia, customer service software Malaysia, AI call center Malaysia, PDPA compliant Malaysia, Bahasa Melayu voice bot, omnichannel Malaysia, cloud telephony Malaysia, IVR solutions KL"
+        canonical="https://halooconnect.com/malaysia"
+      />
       <main className="min-h-screen">
         <Header />
         <LocalizedHeroSection {...malaysiaContent} />
-        <LocalizedOutcomesSection country="Malaysia" />
-        <LocalizedTopFeaturesSection country="Malaysia" />
-        <SentimentSection />
-        <HexaAISection />
-        <BusinessIntelligenceSection />
-        <HexaPerformanceSection />
-        <DeploymentSection />
-        <FeaturesSection />
-        <ChannelsSection />
-        <SecuritySection />
-        <ClientsSection />
-        <TestimonialsSection />
-        <ContactForm />
-        <LocalizedCTASection country="Malaysia" />
-        <Footer />
-        <FloatingCTA />
+        <Suspense fallback={<SectionLoader />}>
+          <LocalizedOutcomesSection country="Malaysia" />
+          <LocalizedTopFeaturesSection country="Malaysia" />
+          <MidPageCTA variant="secondary" country="Malaysia" />
+          <SentimentSection />
+          <HexaAISection />
+          <MidPageCTA variant="primary" country="Malaysia" />
+          <BusinessIntelligenceSection />
+          <HexaPerformanceSection />
+          <DeploymentSection />
+          <FeaturesSection />
+          <MidPageCTA variant="secondary" country="Malaysia" />
+          <ChannelsSection />
+          <SecuritySection />
+          <ClientsSection />
+          <TestimonialsSection />
+          <ContactForm />
+          <LocalizedCTASection country="Malaysia" />
+          <Footer />
+          <FloatingCTA />
+          <ExitIntentPopup />
+        </Suspense>
       </main>
     </>
   );

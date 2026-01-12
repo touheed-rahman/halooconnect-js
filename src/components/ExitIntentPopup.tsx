@@ -1,0 +1,229 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { X, ArrowRight, Loader2, Gift, Percent, Clock, CheckCircle } from "lucide-react";
+import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
+import { supabase } from "@/integrations/supabase/client";
+import { trackLeadConversion } from "@/lib/gtag";
+import { executeRecaptcha } from "@/lib/recaptcha";
+
+const EXIT_POPUP_KEY = "halooconnect_exit_popup_dismissed";
+
+const ExitIntentPopup = () => {
+  const { toast } = useToast();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const [isVisible, setIsVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [countryCode, setCountryCode] = useState("+91");
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+  });
+
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem(EXIT_POPUP_KEY);
+    if (dismissed) return;
+
+    const handleMouseLeave = (e: MouseEvent) => {
+      // Trigger when mouse moves to top of viewport (exit intent)
+      if (e.clientY <= 5 && !isVisible) {
+        setIsVisible(true);
+      }
+    };
+
+    // Add a delay before listening to prevent immediate trigger
+    const timer = setTimeout(() => {
+      document.addEventListener("mouseleave", handleMouseLeave);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [isVisible]);
+
+  const handleClose = () => {
+    setIsVisible(false);
+    sessionStorage.setItem(EXIT_POPUP_KEY, "true");
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const recaptchaToken = await executeRecaptcha("exit_popup_form");
+    if (!recaptchaToken) {
+      toast({
+        title: t("form.error"),
+        description: "reCAPTCHA verification failed. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    const { data: verifyData, error: verifyError } = await supabase.functions.invoke("verify-recaptcha", {
+      body: { token: recaptchaToken },
+    });
+
+    if (verifyError || !verifyData?.success) {
+      toast({
+        title: t("form.error"),
+        description: "Security verification failed. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    const leadData = {
+      name: formData.name.trim(),
+      phone: formData.phone.trim(),
+      country_code: countryCode,
+      company: "Exit Intent - Special Offer",
+    };
+
+    const { error } = await supabase.from("leads").insert(leadData);
+
+    if (error) {
+      toast({
+        title: t("form.error"),
+        description: t("form.errorMessage"),
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+    
+    trackLeadConversion("Exit Intent Popup");
+    handleClose();
+    navigate("/thank-you");
+    
+    supabase.functions.invoke("send-lead-notification", {
+      body: { ...leadData, source: "Exit Intent Popup - 20% Discount" },
+    }).catch(console.error);
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md relative animate-scale-in overflow-hidden">
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors z-10"
+          aria-label="Close popup"
+        >
+          <X className="w-4 h-4 text-gray-600" />
+        </button>
+
+        {/* Discount Banner */}
+        <div className="bg-gradient-to-r from-primary via-red-500 to-primary px-6 py-4 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-3 py-1 rounded-full mb-2">
+            <Clock className="w-4 h-4 text-white" />
+            <span className="text-xs font-bold text-white uppercase tracking-wide">Limited Time Offer</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center justify-center gap-2">
+            <Percent className="w-8 h-8" />
+            20% OFF
+          </h2>
+          <p className="text-white/90 text-sm mt-1">On your first 3 months!</p>
+        </div>
+
+        <div className="p-6">
+          {/* Value Props */}
+          <div className="mb-5">
+            <h3 className="text-xl font-bold text-gray-900 text-center mb-4">
+              Wait! Don't miss this exclusive offer
+            </h3>
+            <div className="space-y-2">
+              {[
+                "Free personalized demo session",
+                "Priority onboarding support",
+                "30-day money-back guarantee"
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <Input
+              name="name"
+              type="text"
+              placeholder={t("form.name")}
+              required
+              value={formData.name}
+              onChange={handleChange}
+              className="h-12 text-base border-gray-300 focus:border-primary"
+              disabled={isSubmitting}
+            />
+
+            <div className="flex">
+              <CountryCodeSelect value={countryCode} onChange={setCountryCode} />
+              <Input
+                name="phone"
+                type="tel"
+                placeholder={getPlaceholderPhone(countryCode)}
+                required
+                value={formData.phone}
+                onChange={handleChange}
+                className="rounded-l-none h-12 flex-1 text-base border-gray-300 focus:border-primary"
+                disabled={isSubmitting}
+              />
+            </div>
+
+            <Button
+              type="submit"
+              variant="hero"
+              size="lg"
+              className="w-full h-14 text-lg font-bold animate-pulse-glow"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                <>
+                  <Gift className="w-5 h-5" />
+                  Claim My 20% Discount
+                  <ArrowRight className="w-5 h-5" />
+                </>
+              )}
+            </Button>
+          </form>
+
+          <p className="text-xs text-gray-500 text-center mt-4">
+            No credit card required • Cancel anytime
+          </p>
+
+          <button
+            onClick={handleClose}
+            className="w-full text-center text-sm text-gray-400 hover:text-gray-600 mt-3 py-2 transition-colors"
+          >
+            No thanks, I'll pay full price
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ExitIntentPopup;
