@@ -118,7 +118,7 @@ const HeroForm = ({
           <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
         </div>
         <span className="text-xs font-medium text-foreground">
-          <span className="font-bold text-primary">{recentActivity.count} people</span> from {recentActivity.city} requested demo today
+          <span className="font-bold bg-secondary text-primary-foreground">{recentActivity.count} people</span> from {recentActivity.city} requested demo today
         </span>
       </div>
 
@@ -129,7 +129,7 @@ const HeroForm = ({
             <Zap className="w-3 h-3 text-green-500" />
             <span className="text-[10px] font-bold text-green-600 uppercase tracking-wide">Free 14-Day Trial</span>
           </div>
-          <h3 className="text-xl font-bold mb-1 text-primary-foreground">Get Your Personalized Demo</h3>
+          <h3 className="text-xl font-bold text-foreground mb-1">Get Your Personalized Demo</h3>
           <p className="text-sm text-muted-foreground">See how Connect 6.0 can transform your business</p>
         </div>
         
