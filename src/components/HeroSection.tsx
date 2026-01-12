@@ -66,19 +66,19 @@ const HeroSection = () => {
               </span>
             </div>
 
-            {/* Main Headline - Benefit focused */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-secondary-foreground leading-[1.1] mb-5 animate-fade-in-up animation-delay-100">
-              <span className="block">Transform Your</span>
-              <span className="block text-gradient bg-gradient-to-r from-primary via-primary to-rose-400 bg-clip-text text-transparent">
+            {/* Main Headline - Benefit focused with high visibility */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] mb-5 animate-fade-in-up animation-delay-100">
+              <span className="block text-white drop-shadow-lg">Transform Your</span>
+              <span className="block bg-gradient-to-r from-primary via-red-400 to-primary bg-clip-text text-transparent drop-shadow-lg" style={{ WebkitTextStroke: '0.5px rgba(255,255,255,0.1)' }}>
                 Contact Center
               </span>
-              <span className="block">With AI Power</span>
+              <span className="block text-white drop-shadow-lg">With AI Power</span>
             </h1>
 
-            {/* Subheadline - Clear value */}
-            <p className="text-lg sm:text-xl text-secondary-foreground/80 mb-6 max-w-xl mx-auto lg:mx-0 animate-fade-in-up animation-delay-200 leading-relaxed">
+            {/* Subheadline - Clear value with better visibility */}
+            <p className="text-lg sm:text-xl text-white/90 mb-6 max-w-xl mx-auto lg:mx-0 animate-fade-in-up animation-delay-200 leading-relaxed">
               Connect 6.0 unifies Voice, WhatsApp, Email & SMS in one platform.
-              <span className="text-primary font-semibold"> Setup in 30 minutes.</span>
+              <span className="text-primary font-bold"> Setup in 30 minutes.</span>
             </p>
 
             {/* Channel Pills with visual appeal */}
@@ -86,13 +86,13 @@ const HeroSection = () => {
               {channels.map((channel, i) => (
                 <div 
                   key={channel.label} 
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors cursor-default"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/15 transition-colors cursor-default"
                 >
                   <channel.icon className={`w-4 h-4 ${channel.color}`} />
-                  <span className="text-sm font-medium text-secondary-foreground">{channel.label}</span>
+                  <span className="text-sm font-medium text-white">{channel.label}</span>
                 </div>
               ))}
-              <div className="px-3 py-2 rounded-full bg-primary/20 border border-primary/30">
+              <div className="px-3 py-2 rounded-full bg-primary/30 border border-primary/40">
                 <span className="text-sm font-bold text-primary">+5 more</span>
               </div>
             </div>
@@ -102,12 +102,12 @@ const HeroSection = () => {
               {benefits.map((benefit, index) => (
                 <li 
                   key={index} 
-                  className="flex items-center gap-3 text-secondary-foreground/90 justify-center lg:justify-start"
+                  className="flex items-center gap-3 text-white justify-center lg:justify-start"
                 >
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500/30 flex items-center justify-center">
                     <CheckCircle className="w-3.5 h-3.5 text-green-400" />
                   </div>
-                  <span className="text-base">
+                  <span className="text-base font-medium">
                     {benefit.text.split(benefit.highlight).map((part, i, arr) => (
                       <span key={i}>
                         {part}
@@ -123,16 +123,16 @@ const HeroSection = () => {
 
             {/* Client Logos - Social Proof */}
             <div className="animate-fade-in-up animation-delay-400">
-              <p className="text-xs text-secondary-foreground/50 uppercase tracking-wider mb-3 text-center lg:text-left">
+              <p className="text-xs text-white/60 uppercase tracking-wider mb-3 text-center lg:text-left font-semibold">
                 Trusted by industry leaders
               </p>
-              <div className="flex items-center justify-center lg:justify-start gap-6 opacity-70">
+              <div className="flex items-center justify-center lg:justify-start gap-6 opacity-80">
                 {[tataLogo, swiggyLogo, godrejLogo, boschLogo].map((logo, i) => (
                   <img 
                     key={i} 
                     src={logo} 
                     alt="Client logo" 
-                    className="h-6 sm:h-7 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                    className="h-6 sm:h-7 w-auto brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300"
                     loading="lazy"
                   />
                 ))}

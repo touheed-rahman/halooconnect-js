@@ -21,6 +21,7 @@ const CTASection = lazy(() => import("@/components/CTASection"));
 const Footer = lazy(() => import("@/components/Footer"));
 const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
 const PopupForm = lazy(() => import("@/components/PopupForm"));
+const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
 
 // Simple loading placeholder
 const SectionLoader = () => <div className="min-h-[200px]" />;
@@ -89,6 +90,7 @@ const Index = () => {
           <Footer />
           <FloatingCTA />
           <PopupForm />
+          <ExitIntentPopup />
         </Suspense>
       </main>
     </>
