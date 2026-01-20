@@ -15,7 +15,7 @@ const StickyMobileCTA = ({ onFormClick }: StickyMobileCTAProps) => {
             href="https://wa.me/919886620544?text=Hi%2C%20I%27m%20interested%20in%20Connect%206.0%20demo"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] text-white font-semibold text-sm shadow-md hover:bg-[#20bd5a] transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] text-white font-semibold text-sm shadow-lg hover:bg-[#20bd5a] transition-all animate-pulse hover:animate-none hover:scale-105"
           >
             <img src={whatsappIcon} alt="WhatsApp" className="w-5 h-5" />
             <span>WhatsApp Us</span>
@@ -24,7 +24,7 @@ const StickyMobileCTA = ({ onFormClick }: StickyMobileCTAProps) => {
           {/* Form Button */}
           <button
             onClick={onFormClick}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-md hover:bg-primary/90 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg hover:bg-primary/90 transition-all animate-pulse hover:animate-none hover:scale-105"
           >
             <MessageSquare className="w-5 h-5" />
             <span>Get Demo</span>

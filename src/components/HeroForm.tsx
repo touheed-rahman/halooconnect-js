@@ -137,32 +137,32 @@ const HeroForm = ({
   };
 
   return (
-    <div className="bg-card/98 backdrop-blur-lg rounded-2xl shadow-elevated border border-border/50 w-full max-w-md overflow-hidden">
+    <div className="bg-white dark:bg-card rounded-2xl shadow-2xl border border-gray-200 dark:border-border w-full max-w-md overflow-hidden">
       {/* Urgency Banner - visible on all devices for conversion */}
-      <div className="flex bg-gradient-to-r from-green-500/20 to-primary/10 border-b border-green-500/30 px-3 py-2 sm:px-4 sm:py-2.5 items-center justify-center gap-2">
+      <div className="flex bg-gradient-to-r from-green-500 to-emerald-600 px-3 py-2 sm:px-4 sm:py-2.5 items-center justify-center gap-2">
         <div className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
         </div>
-        <span className="text-[10px] sm:text-xs font-medium text-primary-foreground">
-          🔥 <span className="font-bold text-green-600">{recentActivity.count} demos</span> booked from {recentActivity.city} today
+        <span className="text-[10px] sm:text-xs font-semibold text-white">
+          🔥 <span className="font-bold">{recentActivity.count} demos</span> booked from {recentActivity.city} today
         </span>
       </div>
 
-      <div className="p-4 sm:p-6">
+      <div className="p-4 sm:p-6 bg-white dark:bg-card">
         {/* Value Proposition - Stronger urgency */}
         <div className="text-center mb-3 sm:mb-4">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/30 mb-2">
-            <Clock className="w-3 h-3 text-primary animate-pulse" />
-            <span className="text-[10px] font-bold text-primary uppercase tracking-wide">Limited Slots Today</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/40 mb-2">
+            <Clock className="w-3.5 h-3.5 text-primary animate-pulse" />
+            <span className="text-[10px] sm:text-xs font-bold text-primary uppercase tracking-wide">Limited Slots Today</span>
           </div>
-          <h3 className="text-base sm:text-xl font-bold mb-0.5 text-primary-foreground">Get Your Demo in 2 Minutes</h3>
-          <p className="text-[10px] sm:text-sm text-muted-foreground">No commitment • Expert will call you back</p>
+          <h3 className="text-lg sm:text-xl font-bold mb-1 text-gray-900 dark:text-foreground">Get Your Demo in 2 Minutes</h3>
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-muted-foreground">No commitment • Expert will call you back</p>
         </div>
         
-        <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-3.5">
           {/* Name + Phone side by side on larger mobile for compactness */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Input 
               name="name" 
               type="text" 
@@ -170,7 +170,7 @@ const HeroForm = ({
               required 
               value={formData.name} 
               onChange={handleChange} 
-              className="h-10 sm:h-11 pl-3 pr-3 text-sm" 
+              className="h-11 sm:h-12 pl-4 pr-4 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" 
               disabled={isSubmitting} 
             />
             
@@ -184,21 +184,21 @@ const HeroForm = ({
                 required 
                 value={formData.phone} 
                 onChange={handleChange} 
-                className="rounded-l-none h-10 sm:h-11 flex-1 text-sm" 
+                className="rounded-l-none h-11 sm:h-12 flex-1 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" 
                 disabled={isSubmitting} 
               />
             </div>
           </div>
           
           {/* Company + Location side by side */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Input 
               name="company" 
               type="text" 
               placeholder="Company (optional)" 
               value={formData.company} 
               onChange={handleChange} 
-              className="h-10 sm:h-11 text-sm" 
+              className="h-11 sm:h-12 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" 
               disabled={isSubmitting} 
             />
 
@@ -222,65 +222,65 @@ const HeroForm = ({
             type="submit" 
             variant="hero" 
             size="lg" 
-            className="w-full h-11 sm:h-12 text-sm sm:text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow" 
+            className="w-full h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/95 hover:to-primary text-white animate-pulse hover:animate-none hover:scale-[1.02]" 
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
-                Booking Your Slot...
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span className="ml-2">Booking Your Slot...</span>
               </>
             ) : (
               <>
                 🚀 Book My Free Demo Now
-                <ArrowRight className="w-4 h-4 ml-1" />
+                <ArrowRight className="w-5 h-5 ml-2" />
               </>
             )}
           </Button>
 
           {/* Immediate callback promise */}
-          <p className="text-center text-[10px] sm:text-xs text-muted-foreground">
+          <p className="text-center text-xs sm:text-sm text-gray-600 dark:text-muted-foreground font-medium">
             ⚡ We'll call you within <span className="font-bold text-primary">5 minutes</span>
           </p>
 
           {/* Trust Signals - Always visible */}
-          <div className="flex items-center justify-center gap-3 sm:gap-4 pt-1">
-            <div className="flex items-center gap-1 text-[10px] sm:text-xs text-muted-foreground">
-              <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0" />
-              <span>Free trial</span>
+          <div className="flex items-center justify-center gap-4 sm:gap-5 pt-2">
+            <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-700 dark:text-muted-foreground">
+              <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+              <span className="font-medium">Free trial</span>
             </div>
-            <div className="flex items-center gap-1 text-[10px] sm:text-xs text-muted-foreground">
-              <Shield className="w-3 h-3 text-green-500 flex-shrink-0" />
-              <span>No credit card</span>
+            <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-700 dark:text-muted-foreground">
+              <Shield className="w-4 h-4 text-green-500 flex-shrink-0" />
+              <span className="font-medium">No credit card</span>
             </div>
-            <div className="flex items-center gap-1 text-[10px] sm:text-xs text-muted-foreground">
-              <Users className="w-3 h-3 text-blue-500 flex-shrink-0" />
-              <span>500+ clients</span>
+            <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-700 dark:text-muted-foreground">
+              <Users className="w-4 h-4 text-blue-500 flex-shrink-0" />
+              <span className="font-medium">500+ clients</span>
             </div>
           </div>
         </form>
       </div>
 
       {/* Bottom Trust Bar - Visible on all with click-to-call */}
-      <div className="bg-muted/50 border-t border-border/50 px-3 py-2.5 sm:px-4 sm:py-3">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <div className="flex -space-x-1">
+      <div className="bg-gray-50 dark:bg-muted/50 border-t border-gray-200 dark:border-border px-4 py-3 sm:px-5 sm:py-3.5">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex -space-x-1.5">
               {[1, 2, 3].map(i => (
-                <div key={i} className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-card flex items-center justify-center">
-                  <span className="text-[6px] sm:text-[8px]">👤</span>
+                <div key={i} className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 border-2 border-white dark:border-card flex items-center justify-center shadow-sm">
+                  <span className="text-[8px] sm:text-[10px]">👤</span>
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-1 text-xs sm:text-sm">
-              <span className="text-yellow-500">★</span>
-              <span className="font-bold text-foreground">4.9</span>
-              <span className="text-muted-foreground hidden xs:inline">rating</span>
+            <div className="flex items-center gap-1.5 text-sm sm:text-base">
+              <span className="text-yellow-500 text-base">★</span>
+              <span className="font-bold text-gray-900 dark:text-foreground">4.9</span>
+              <span className="text-gray-600 dark:text-muted-foreground">rating</span>
             </div>
           </div>
           <a 
             href="tel:+919876543210" 
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-green-500/15 border border-green-500/40 text-xs font-semibold text-green-600 hover:bg-green-500/25 transition-colors whitespace-nowrap"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white text-xs sm:text-sm font-semibold hover:bg-green-600 transition-colors shadow-md whitespace-nowrap"
           >
             📞 <span className="hidden xs:inline">Prefer a</span> Call<span className="hidden xs:inline">?</span>
           </a>
