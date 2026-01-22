@@ -2,10 +2,8 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowLeft, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/haloo-connect-logo.png";
-
 const ThankYou = () => {
-  return (
-    <div className="min-h-screen bg-background flex flex-col">
+  return <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="py-6 border-b border-border/50">
         <div className="container">
@@ -63,16 +61,7 @@ const ThankYou = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                <Phone className="w-4 h-4" />
-                <span>+91 80 4718 3636</span>
-              </div>
-              <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                <Mail className="w-4 h-4" />
-                <span>sales@haloocom.com</span>
-              </div>
-            </div>
+            
 
             {/* Back Button */}
             <Link to="/">
@@ -91,8 +80,6 @@ const ThankYou = () => {
           © 2024 Haloo Connect. All rights reserved.
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default ThankYou;
