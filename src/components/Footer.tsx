@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/haloo-connect-logo.png";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, Instagram, Facebook } from "lucide-react";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -16,6 +16,27 @@ const Footer = () => {
             <p className="text-secondary-foreground/70 text-sm mb-4">
               {t("footer.description")}
             </p>
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-4 mt-4">
+              <a 
+                href="https://www.instagram.com/haloocomglobal_?igsh=MmlyaTgwNHZzZ3U=" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <a 
+                href="https://www.facebook.com/haloocom/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={20} />
+              </a>
+            </div>
           </div>
           
           {/* Quick Links */}
