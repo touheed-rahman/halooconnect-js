@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const countries = [
+  { code: "+63", country: "PH", flag: "🇵🇭", name: "Philippines" },
   { code: "+65", country: "SG", flag: "🇸🇬", name: "Singapore" },
   { code: "+971", country: "AE", flag: "🇦🇪", name: "UAE" },
   { code: "+60", country: "MY", flag: "🇲🇾", name: "Malaysia" },
@@ -10,6 +11,7 @@ const countries = [
 
 export const getPlaceholderPhone = (countryCode: string) => {
   switch (countryCode) {
+    case "+63": return "917 123 4567";
     case "+65": return "8376 5007";
     case "+971": return "50 429 8422";
     case "+60": return "12 345 6789";
