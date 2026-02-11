@@ -9,10 +9,9 @@ import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
 import { CountrySelect, CitySelect } from "./LocationSelect";
 import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
+
 const ContactForm = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState("+65");
@@ -24,34 +23,37 @@ const ContactForm = () => {
     phone: "",
     company: ""
   });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     // Validate location
     if (!location) {
       toast({
         title: "Error",
         description: "Please select your country.",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
-
+    
     // Validate city if India is selected
     if (location === "India" && !city) {
       toast({
         title: "Error",
         description: "Please select your city.",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
+
     setIsSubmitting(true);
 
     // Execute reCAPTCHA
@@ -60,30 +62,27 @@ const ContactForm = () => {
       toast({
         title: "Error",
         description: "reCAPTCHA verification failed. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
       setIsSubmitting(false);
       return;
     }
 
     // Verify reCAPTCHA token
-    const {
-      data: verifyData,
-      error: verifyError
-    } = await supabase.functions.invoke("verify-recaptcha", {
-      body: {
-        token: recaptchaToken
-      }
+    const { data: verifyData, error: verifyError } = await supabase.functions.invoke("verify-recaptcha", {
+      body: { token: recaptchaToken },
     });
+
     if (verifyError || !verifyData?.success) {
       toast({
         title: "Error",
         description: "Security verification failed. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
       setIsSubmitting(false);
       return;
     }
+    
     const leadData = {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
@@ -93,33 +92,38 @@ const ContactForm = () => {
       location: location,
       city: location === "India" ? city : null
     };
-    const {
-      error
-    } = await supabase.from("leads").insert(leadData);
+
+    const { error } = await supabase.from("leads").insert(leadData);
+
     if (error) {
       toast({
         title: "Error",
         description: "Something went wrong. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
       setIsSubmitting(false);
       return;
     }
-
+    
     // Track and navigate immediately
     trackLeadConversion("Contact Form");
     navigate("/thank-you");
-
+    
     // Fire-and-forget email
     supabase.functions.invoke("send-lead-notification", {
-      body: {
-        ...leadData,
-        source: "Contact Form"
-      }
+      body: { ...leadData, source: "Contact Form" },
     }).catch(console.error);
   };
-  const benefits = ["Free personalized demo", "No credit card required", "Setup in under 30 minutes", "24/7 dedicated support"];
-  return <section id="contact-form" className="py-20 md:py-28 bg-background">
+
+  const benefits = [
+    "Free personalized demo",
+    "No credit card required",
+    "Setup in under 30 minutes",
+    "24/7 dedicated support"
+  ];
+
+  return (
+    <section id="contact-form" className="py-20 md:py-28 bg-background">
       <div className="container">
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -134,12 +138,14 @@ const ContactForm = () => {
               </p>
               
               <ul className="space-y-4">
-                {benefits.map(benefit => <li key={benefit} className="flex items-center gap-3">
+                {benefits.map((benefit) => (
+                  <li key={benefit} className="flex items-center gap-3">
                     <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-4 h-4 text-primary" />
                     </div>
                     <span className="text-foreground">{benefit}</span>
-                  </li>)}
+                  </li>
+                ))}
               </ul>
             </div>
             
@@ -152,14 +158,31 @@ const ContactForm = () => {
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     Full Name *
                   </label>
-                  <Input id="name" name="name" type="text" placeholder="John Smith" required value={formData.name} onChange={handleChange} disabled={isSubmitting} />
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="John Smith"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                  />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                     Work Email
                   </label>
-                  <Input id="email" name="email" type="email" placeholder="john@company.com" value={formData.email} onChange={handleChange} disabled={isSubmitting} />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="john@company.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                  />
                 </div>
                 
                 <div>
@@ -168,7 +191,17 @@ const ContactForm = () => {
                   </label>
                   <div className="flex">
                     <CountryCodeSelect value={countryCode} onChange={setCountryCode} />
-                    <Input id="phone" name="phone" type="tel" placeholder={getPlaceholderPhone(countryCode)} required value={formData.phone} onChange={handleChange} className="rounded-l-none flex-1" disabled={isSubmitting} />
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder={getPlaceholderPhone(countryCode)}
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="rounded-l-none flex-1"
+                      disabled={isSubmitting}
+                    />
                   </div>
                 </div>
                 
@@ -176,7 +209,15 @@ const ContactForm = () => {
                   <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
                     Company Name
                   </label>
-                  <Input id="company" name="company" type="text" placeholder="Your Company" value={formData.company} onChange={handleChange} disabled={isSubmitting} />
+                  <Input
+                    id="company"
+                    name="company"
+                    type="text"
+                    placeholder="Your Company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                  />
                 </div>
 
                 {/* Location Select */}
@@ -184,28 +225,44 @@ const ContactForm = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Country *
                   </label>
-                  <CountrySelect value={location} onChange={val => {
-                  setLocation(val);
-                  if (val !== "India") setCity("");
-                }} disabled={isSubmitting} />
+                  <CountrySelect 
+                    value={location} 
+                    onChange={(val) => {
+                      setLocation(val);
+                      if (val !== "India") setCity("");
+                    }} 
+                    disabled={isSubmitting} 
+                  />
                 </div>
 
                 {/* City Select - Only show for India */}
-                {location === "India" && <div>
+                {location === "India" && (
+                  <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       City *
                     </label>
                     <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
-                  </div>}
+                  </div>
+                )}
                 
-                <Button type="submit" variant="hero" size="lg" className="w-full mt-2" disabled={isSubmitting}>
-                  {isSubmitting ? <>
+                <Button 
+                  type="submit" 
+                  variant="hero" 
+                  size="lg" 
+                  className="w-full mt-2"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
                       <Loader2 className="w-5 h-5 animate-spin" />
                       Submitting...
-                    </> : <>
+                    </>
+                  ) : (
+                    <>
                       Get Free Demo
                       <ArrowRight className="w-5 h-5" />
-                    </>}
+                    </>
+                  )}
                 </Button>
                 
                 <p className="text-xs text-muted-foreground text-center mt-4">
@@ -216,6 +273,8 @@ const ContactForm = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ContactForm;
