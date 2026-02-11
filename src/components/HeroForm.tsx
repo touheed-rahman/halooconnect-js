@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
-import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
+
+import CountryCodeSelect, {
+  getPlaceholderPhone
+} from "./CountryCodeSelect";
 import { CountrySelect, CitySelect } from "./LocationSelect";
+
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
@@ -23,10 +27,12 @@ const HeroForm = ({
   const { toast } = useToast();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState(defaultCountryCode);
   const [location, setLocation] = useState("");
   const [city, setCity] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -40,108 +46,121 @@ const HeroForm = ({
     }));
   };
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  
-  // Validate location
-  if (!location) {
-    toast({
-      title: t("form.error"),
-      description: "Please select your country.",
-      variant: "destructive"
-    });
-    return;
-  }
-  
-  // Validate city if India is selected
-  if (location === "India" && !city) {
-    toast({
-      title: t("form.error"),
-      description: "Please select your city.",
-      variant: "destructive"
-    });
-    return;
-  }
-  
-  setIsSubmitting(true);
-  
-  try {
-    const cleanPhone = formData.phone.trim().replace(/[\s\-\(\)]/g, '');
-    const fullPhoneNumber = countryCode.replace('+', '') + cleanPhone;
-    
-    toast({
-      title: "📞 Initiating Call...",
-      description: "Our expert will call you in a moment!",
-    });
-    
-    fetch('https://pulse.haloocom.in/webenquiry/make-call', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        phoneNumber: fullPhoneNumber,
-        customer_name: formData.name.trim(),
-        campaignId: "CMP1001",
-        listId: "LIST2001"
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Validate country
+    if (!location) {
+      toast({
+        title: t("form.error"),
+        description: "Please select your country.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Validate city only for India
+    if (location === "India" && !city) {
+      toast({
+        title: t("form.error"),
+        description: "Please select your city.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Clean phone number
+      const cleanPhone = formData.phone
+        .trim()
+        .replace(/[\s\-\(\)]/g, "");
+
+      const fullPhoneNumber =
+        countryCode.replace("+", "") + cleanPhone;
+
+      // 🔔 Instant call trigger
+      toast({
+        title: "📞 Initiating Call...",
+        description: "Our expert will call you shortly!"
+      });
+
+      fetch("https://pulse.haloocom.in/webenquiry/make-call", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phoneNumber: fullPhoneNumber,
+          customer_name: formData.name.trim(),
+          campaignId: "CMP1001",
+          listId: "LIST2001"
+        })
+      }).catch(console.error);
+    } catch (err) {
+      console.error("Call trigger failed:", err);
+    }
+
+    // 🔐 reCAPTCHA
+    const recaptchaToken = await executeRecaptcha("hero_form");
+
+    if (!recaptchaToken) {
+      toast({
+        title: t("form.error"),
+        description: "reCAPTCHA failed. Please retry.",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    const { data: verifyData, error: verifyError } =
+      await supabase.functions.invoke("verify-recaptcha", {
+        body: { token: recaptchaToken }
+      });
+
+    if (verifyError || !verifyData?.success) {
+      toast({
+        title: t("form.error"),
+        description: "Security verification failed.",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // 🧾 Save lead
+    const leadData = {
+      name: formData.name.trim(),
+      phone: formData.phone.trim(),
+      country_code: countryCode,
+      company: formData.company.trim() || "Not provided",
+      location,
+      city: location === "India" ? city : null
+    };
+
+    const { error } = await supabase.from("leads").insert(leadData);
+
+    if (error) {
+      toast({
+        title: t("form.error"),
+        description: t("form.errorMessage"),
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // 📊 Tracking + redirect
+    trackLeadConversion("Hero Form");
+    navigate("/thank-you");
+
+    // 🔔 Internal notification
+    supabase.functions
+      .invoke("send-lead-notification", {
+        body: { ...leadData, source: "Hero Form" }
       })
-    }).catch(console.error);
-  } catch (callError) {
-    console.error('Error preparing call:', callError);
-  }
-  
-  const recaptchaToken = await executeRecaptcha("hero_form");
-  
-  if (!recaptchaToken) {
-    toast({
-      title: t("form.error"),
-      description: "reCAPTCHA verification failed. Please try again.",
-      variant: "destructive"
-    });
-    setIsSubmitting(false);
-    return;
-  }
-  
-  const { data: verifyData, error: verifyError } = await supabase.functions.invoke("verify-recaptcha", {
-    body: { token: recaptchaToken }
-  });
-  
-  if (verifyError || !verifyData?.success) {
-    toast({
-      title: t("form.error"),
-      description: "Security verification failed. Please try again.",
-      variant: "destructive"
-    });
-    setIsSubmitting(false);
-    return;
-  }
-  
-  const leadData = {
-    name: formData.name.trim(),
-    phone: formData.phone.trim(),
-    country_code: countryCode,
-    company: formData.company.trim() || "Not provided",
-    location: location,
-    city: location === "India" ? city : null
+      .catch(console.error);
   };
-  
-  const { error } = await supabase.from("leads").insert(leadData);
-  
-  if (error) {
-    toast({
-      title: t("form.error"),
-      description: t("form.errorMessage"),
-      variant: "destructive"
-    });
-    setIsSubmitting(false);
-    return;
-  }
-  
-  trackLeadConversion("Hero Form");
-  navigate("/thank-you");
-  
-  supabase.functions.invoke("send-lead-notification", {
-    body: { ...leadData, source: "Hero Form" }
-  }).catch(console.error);
-};
 
   return (
     <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden">
@@ -154,78 +173,80 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             Get a personalized walkthrough of our platform
           </p>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
-          <Input 
-            name="name" 
-            type="text" 
-            placeholder="Full Name *" 
-            required 
-            value={formData.name} 
-            onChange={handleChange} 
-            className="h-12 text-sm bg-muted/50 border-border" 
-            disabled={isSubmitting} 
+          <Input
+            name="name"
+            placeholder="Full Name *"
+            required
+            value={formData.name}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            className="h-12 bg-muted/50"
           />
-          
+
           <div className="flex">
-            <CountryCodeSelect 
-              value={countryCode} 
-              onChange={setCountryCode} 
-              disabled={fixedCountryCode} 
+            <CountryCodeSelect
+              value={countryCode}
+              onChange={setCountryCode}
+              disabled={fixedCountryCode}
             />
-            <Input 
-              name="phone" 
-              type="tel" 
-              placeholder={getPlaceholderPhone(countryCode)} 
-              required 
-              value={formData.phone} 
-              onChange={handleChange} 
-              className="rounded-l-none h-12 flex-1 text-sm bg-muted/50 border-border" 
-              disabled={isSubmitting} 
+            <Input
+              name="phone"
+              type="tel"
+              placeholder={getPlaceholderPhone(countryCode)}
+              required
+              value={formData.phone}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              className="h-12 rounded-l-none bg-muted/50"
             />
           </div>
-          
-          <Input 
-            name="company" 
-            type="text" 
-            placeholder="Company Name" 
-            value={formData.company} 
-            onChange={handleChange} 
-            className="h-12 text-sm bg-muted/50 border-border" 
-            disabled={isSubmitting} 
+
+          <Input
+            name="company"
+            placeholder="Company Name"
+            value={formData.company}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            className="h-12 bg-muted/50"
           />
-          
-          <CountrySelect 
-            value={location} 
+
+          <CountrySelect
+            value={location}
             onChange={val => {
               setLocation(val);
               if (val !== "India") setCity("");
-            }} 
-            disabled={isSubmitting} 
-          />
-          
-          {location === "India" && (
-            <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
-          )}
-          
-          <Button 
-            type="submit" 
-            size="lg" 
-            className="w-full h-12 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground" 
+            }}
             disabled={isSubmitting}
+          />
+
+          {location === "India" && (
+            <CitySelect
+              value={city}
+              onChange={setCity}
+              disabled={isSubmitting}
+            />
+          )}
+
+          <Button
+            type="submit"
+            size="lg"
+            disabled={isSubmitting}
+            className="w-full h-12 font-semibold"
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                 Submitting...
               </>
             ) : (
               "Get Free Demo"
             )}
           </Button>
-          
+
           <p className="text-xs text-center text-muted-foreground">
-            We'll contact you within 24 hours
+            We’ll contact you within 24 hours
           </p>
         </form>
       </div>
@@ -234,3 +255,4 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 };
 
 export default HeroForm;
+
