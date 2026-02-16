@@ -39,7 +39,7 @@ const CircleProgress = ({
   percentage,
   value,
   isVisible,
-  size = 180,
+  size = 200,
 }: {
   percentage: number;
   value: string;
@@ -96,8 +96,8 @@ const CircleProgress = ({
         <span
           className={`font-bold text-foreground ${
             isLongValue
-              ? "text-2xl md:text-3xl"
-              : "text-3xl md:text-5xl"
+              ? "text-xl md:text-2xl"
+              : "text-2xl md:text-4xl"
           }`}
         >
           {value}
