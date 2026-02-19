@@ -83,6 +83,94 @@ const SYSTEM_PROMPT = `You are an elite HTML blog content formatter and SEO stru
 
 REMEMBER: You are ONLY restructuring and formatting. Every single word of the original content must remain EXACTLY as written. Output raw HTML only.`;
 
+function splitHtmlIntoChunks(html: string, maxWords: number): string[] {
+  // Split by major section boundaries (h2, h3, hr) to keep semantic chunks
+  const sectionRegex = /(<h[23][^>]*>)/gi;
+  const parts = html.split(sectionRegex);
+  
+  const chunks: string[] = [];
+  let currentChunk = "";
+  let currentWordCount = 0;
+
+  for (const part of parts) {
+    const partWords = part.replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length;
+    
+    if (currentWordCount + partWords > maxWords && currentChunk.length > 0) {
+      chunks.push(currentChunk);
+      currentChunk = part;
+      currentWordCount = partWords;
+    } else {
+      currentChunk += part;
+      currentWordCount += partWords;
+    }
+  }
+  
+  if (currentChunk) chunks.push(currentChunk);
+  
+  // If splitting by headings didn't work well, fall back to rough splitting
+  if (chunks.length <= 1 && currentWordCount > maxWords) {
+    const roughChunkSize = Math.ceil(html.length / Math.ceil(currentWordCount / maxWords));
+    const fallbackChunks: string[] = [];
+    let i = 0;
+    while (i < html.length) {
+      let end = Math.min(i + roughChunkSize, html.length);
+      // Try to break at a closing tag boundary
+      if (end < html.length) {
+        const nextClose = html.indexOf("</", end);
+        const nextCloseEnd = nextClose !== -1 ? html.indexOf(">", nextClose) : -1;
+        if (nextCloseEnd !== -1 && nextCloseEnd - end < 500) {
+          end = nextCloseEnd + 1;
+        }
+      }
+      fallbackChunks.push(html.slice(i, end));
+      i = end;
+    }
+    return fallbackChunks;
+  }
+  
+  return chunks.length > 0 ? chunks : [html];
+}
+
+async function callAI(html: string, wordCount: number, apiKey: string, isChunk: boolean): Promise<string> {
+  const model = wordCount > 5000 ? "google/gemini-2.5-pro" : "google/gemini-3-flash-preview";
+  
+  const chunkInstruction = isChunk 
+    ? "This is a SECTION of a larger blog post. Format this section only. Do NOT add or remove any text. Do NOT add <h1> tags — this section may not have one. Only restructure the HTML."
+    : "";
+
+  const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        {
+          role: "user",
+          content: `${chunkInstruction}\nFormat and SEO-optimize this blog HTML structure (~${wordCount} words). DO NOT change any text — only restructure and optimize the HTML:\n\n${html}`,
+        },
+      ],
+    }),
+  });
+
+  if (!response.ok) {
+    const status = response.status;
+    const body = await response.text();
+    console.error(`AI gateway error: ${status}`, body);
+    if (status === 429) throw new Error("RATE_LIMIT");
+    if (status === 402) throw new Error("CREDITS_EXHAUSTED");
+    throw new Error(`AI service error (${status})`);
+  }
+
+  const data = await response.json();
+  let result = data.choices?.[0]?.message?.content || "";
+  result = result.replace(/^```html?\s*\n?/i, "").replace(/\n?\s*```\s*$/i, "").trim();
+  return result;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -98,60 +186,53 @@ serve(async (req) => {
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
-    // For very large content, use the pro model for better handling
-    const wordCount = html.replace(/<[^>]*>/g, "").split(/\s+/).length;
-    const model = wordCount > 5000 ? "google/gemini-2.5-pro" : "google/gemini-3-flash-preview";
+    const wordCount = html.replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length;
+    console.log(`AI Blog Align: ${wordCount} words, ${html.length} chars`);
 
-    console.log(`AI Blog Align: ${wordCount} words, using model: ${model}`);
+    const CHUNK_THRESHOLD = 4000; // words
+    let formattedHtml: string;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          {
-            role: "user",
-            content: `Format and SEO-optimize this blog HTML structure. The content has approximately ${wordCount} words. DO NOT change any text — only restructure, align, and optimize the HTML layout for SEO:\n\n${html}`,
-          },
-        ],
-      }),
-    });
-
-    if (!response.ok) {
-      const status = response.status;
-      if (status === 429) {
-        return new Response(JSON.stringify({ error: "Rate limit exceeded. Please wait a moment and try again." }), {
-          status: 429,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
+    if (wordCount <= CHUNK_THRESHOLD) {
+      // Small enough — single pass
+      formattedHtml = await callAI(html, wordCount, LOVABLE_API_KEY, false);
+    } else {
+      // Large content — split into chunks and process each
+      const chunks = splitHtmlIntoChunks(html, CHUNK_THRESHOLD);
+      console.log(`AI Blog Align: Splitting into ${chunks.length} chunks`);
+      
+      const results: string[] = [];
+      for (let i = 0; i < chunks.length; i++) {
+        const chunkWords = chunks[i].replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length;
+        console.log(`AI Blog Align: Processing chunk ${i + 1}/${chunks.length} (${chunkWords} words)`);
+        
+        let retries = 2;
+        let result = "";
+        while (retries >= 0) {
+          try {
+            result = await callAI(chunks[i], chunkWords, LOVABLE_API_KEY, true);
+            break;
+          } catch (e) {
+            if (e instanceof Error && (e.message === "RATE_LIMIT" || e.message === "CREDITS_EXHAUSTED")) {
+              throw e; // Don't retry billing/rate errors
+            }
+            if (retries === 0) throw e;
+            retries--;
+            console.log(`AI Blog Align: Retrying chunk ${i + 1} (${retries + 1} retries left)`);
+            await new Promise(r => setTimeout(r, 2000)); // wait before retry
+          }
+        }
+        
+        if (!result) {
+          // If AI returned empty for a chunk, keep original
+          console.warn(`AI Blog Align: Chunk ${i + 1} returned empty, keeping original`);
+          results.push(chunks[i]);
+        } else {
+          results.push(result);
+        }
       }
-      if (status === 402) {
-        return new Response(JSON.stringify({ error: "AI credits exhausted. Please add credits to continue." }), {
-          status: 402,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
-      const t = await response.text();
-      console.error("AI gateway error:", status, t);
-      return new Response(JSON.stringify({ error: `AI service error (${status})` }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      
+      formattedHtml = results.join("\n");
     }
-
-    const data = await response.json();
-    let formattedHtml = data.choices?.[0]?.message?.content || "";
-
-    // Strip markdown code fences if model wraps output
-    formattedHtml = formattedHtml
-      .replace(/^```html?\s*\n?/i, "")
-      .replace(/\n?\s*```\s*$/i, "")
-      .trim();
 
     if (!formattedHtml) {
       return new Response(JSON.stringify({ error: "AI returned empty content. Please try again." }), {
@@ -166,9 +247,22 @@ serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
-    console.error("ai-blog-align error:", e);
+    const msg = e instanceof Error ? e.message : "Unknown error";
+    console.error("ai-blog-align error:", msg);
+    
+    if (msg === "RATE_LIMIT") {
+      return new Response(JSON.stringify({ error: "Rate limit exceeded. Please wait a moment and try again." }), {
+        status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (msg === "CREDITS_EXHAUSTED") {
+      return new Response(JSON.stringify({ error: "AI credits exhausted. Please add credits to continue." }), {
+        status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }),
+      JSON.stringify({ error: msg }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }

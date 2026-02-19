@@ -211,9 +211,27 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
 
     setAligning(true);
     try {
-      const { data, error } = await supabase.functions.invoke("ai-blog-align", {
-        body: { html: currentHtml },
-      });
+      const wordCount = currentHtml.replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length;
+      if (wordCount > 1000) {
+        toast({ title: "⏳ Processing large content", description: `Aligning ${wordCount.toLocaleString()} words — this may take a minute...` });
+      }
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-blog-align`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({ html: currentHtml }),
+          signal: AbortSignal.timeout(300000), // 5 min timeout for large content
+        }
+      );
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data?.error || `Error ${response.status}`);
+      const error = null;
 
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
