@@ -253,24 +253,24 @@
     "cta": "Explore Analytics"
   },
   "hexaPerformance": {
-    "title": "HEXA AI in Action:",
-    "titleHighlight": "Real-World Performance",
-    "description": "HEXA AI delivers measurable results that impact your bottom line. Organizations leveraging our voice bot technology see dramatic improvements in efficiency, customer satisfaction, and operational costs within the first quarter of deployment.",
+    "title": "AI Voice Bot ROI:",
+    "titleHighlight": "Measurable Results",
+    "description": "Enterprises using HEXA AI voice bot see 60% cost reduction, 3X capacity increase & 85% first-call resolution within 90 days. The best AI call center automation for inbound & outbound operations.",
     "stat1": {
-      "title": "Call Resolution Rate",
-      "description": "HEXA successfully resolves customer inquiries without human intervention"
+      "title": "First Call Resolution",
+      "description": "AI voice bot resolves customer queries without human intervention — reducing AHT & transfer rates"
     },
     "stat2": {
-      "title": "Capacity Increase",
-      "description": "Handle triple the customer interactions with the same team size"
+      "title": "3X Capacity",
+      "description": "Handle triple the call volume with the same team size using AI-powered automation"
     },
     "stat3": {
-      "title": "Cost Reduction",
-      "description": "Lower operational expenses while improving customer satisfaction scores"
+      "title": "60% Cost Savings",
+      "description": "Reduce operational costs while improving CSAT scores through intelligent call routing & automation"
     },
     "stat4": {
-      "title": "Response Time",
-      "description": "Instant answers that keep customers engaged and satisfied"
+      "title": "Sub-Second Response",
+      "description": "Instant AI responses keep customers engaged — no hold times, no queue abandonment"
     }
   },
   "channels": {
