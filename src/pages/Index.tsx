@@ -103,7 +103,6 @@ const Index = () => {
           </div>
           <CTASection />
           <Footer />
-          <FloatingCTA />
           
           <ExitIntentPopup />
         </Suspense>
