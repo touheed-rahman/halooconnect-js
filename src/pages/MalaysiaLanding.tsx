@@ -2,13 +2,13 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import LocalizedHeroSection from "@/components/LocalizedHeroSection";
 import SEOHead from "@/components/SEOHead";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const ChannelsSection = lazy(() => import("@/components/ChannelsSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const ContactForm = lazy(() => import("@/components/ContactForm"));
 const Footer = lazy(() => import("@/components/Footer"));
-const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
 const SecuritySection = lazy(() => import("@/components/SecuritySection"));
 const ClientsSection = lazy(() => import("@/components/ClientsSection"));
 const SentimentSection = lazy(() => import("@/components/SentimentSection"));
@@ -28,8 +28,7 @@ const malaysiaContent = {
   country: "Malaysia",
   countryCode: "+60",
   headline: "Leading Call Center Solution in",
-  subheadline:
-    "Malaysia's premier cloud contact center software. PDPA Malaysia compliant with Bahasa Melayu, English & Mandarin AI voice support for seamless customer engagement.",
+  subheadline: "PDPA compliant cloud contact center with Bahasa Melayu AI voice bot.",
   benefits: [
     "Bahasa Melayu AI Voice Bot",
     "PDPA Malaysia Compliant",
@@ -67,9 +66,9 @@ const MalaysiaLanding = () => {
   return (
     <>
       <SEOHead 
-        title="Best Call Center Software Malaysia 2025 | Cloud Contact Center Kuala Lumpur"
-        description="Top cloud call center software in Malaysia. PDPA compliant contact center with Bahasa Melayu voice bot, omnichannel support, and AI-powered customer engagement. Free demo."
-        keywords="call center software Malaysia, contact center Kuala Lumpur, cloud call center Malaysia, customer service software Malaysia, AI call center Malaysia, PDPA compliant Malaysia, Bahasa Melayu voice bot, omnichannel Malaysia, cloud telephony Malaysia, IVR solutions KL, best call center software 2025"
+        title="Best Call Center Software Malaysia 2025 | AI Cloud Contact Center Kuala Lumpur"
+        description="#1 AI-powered cloud call center software Malaysia. PDPA compliant, Bahasa Melayu voice bot, predictive dialer, omnichannel support, WhatsApp integration. Free demo."
+        keywords="call center software Malaysia, contact center Kuala Lumpur, cloud call center Malaysia, customer service software Malaysia, AI call center Malaysia, PDPA compliant Malaysia, Bahasa Melayu voice bot, omnichannel Malaysia, cloud telephony Malaysia, IVR solutions KL, best call center software 2025, predictive dialer Malaysia, CRM dialer Malaysia, outbound dialer Malaysia, workforce management Malaysia, automatic call distribution KL"
         canonical="https://halooconnect.com/malaysia"
         schema={localBusinessSchema}
       />
@@ -77,25 +76,24 @@ const MalaysiaLanding = () => {
         <Header />
         <LocalizedHeroSection {...malaysiaContent} />
         <Suspense fallback={<SectionLoader />}>
-          <LocalizedOutcomesSection country="Malaysia" />
-          <LocalizedTopFeaturesSection country="Malaysia" />
+          <ScrollReveal><LocalizedOutcomesSection country="Malaysia" /></ScrollReveal>
+          <ScrollReveal delay={50}><LocalizedTopFeaturesSection country="Malaysia" /></ScrollReveal>
           <MidPageCTA variant="secondary" country="Malaysia" />
-          <SentimentSection />
-          <HexaAISection />
+          <ScrollReveal><SentimentSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaAISection /></ScrollReveal>
           <MidPageCTA variant="primary" country="Malaysia" />
-          <BusinessIntelligenceSection />
-          <HexaPerformanceSection />
-          <DeploymentSection />
-          <FeaturesSection />
+          <ScrollReveal><BusinessIntelligenceSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaPerformanceSection /></ScrollReveal>
+          <ScrollReveal><DeploymentSection /></ScrollReveal>
+          <ScrollReveal><FeaturesSection /></ScrollReveal>
           <MidPageCTA variant="secondary" country="Malaysia" />
-          <ChannelsSection />
-          <SecuritySection />
-          <ClientsSection />
-          <TestimonialsSection />
+          <ScrollReveal><ChannelsSection /></ScrollReveal>
+          <ScrollReveal><SecuritySection /></ScrollReveal>
+          <ScrollReveal><ClientsSection /></ScrollReveal>
+          <ScrollReveal><TestimonialsSection /></ScrollReveal>
           <ContactForm />
           <LocalizedCTASection country="Malaysia" />
           <Footer />
-          <FloatingCTA />
           <ExitIntentPopup />
         </Suspense>
       </main>

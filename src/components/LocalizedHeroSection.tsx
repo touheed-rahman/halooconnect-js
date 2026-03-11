@@ -1,6 +1,7 @@
 import heroContactCenterVideo from "@/assets/hero-contact-center.mp4";
 import heroContactCenterPoster from "@/assets/hero-contact-center.jpg";
 import HeroForm from "./HeroForm";
+import HeroTrustStrip from "./HeroTrustStrip";
 
 interface LocalizedHeroProps {
   country: string;
@@ -20,10 +21,9 @@ const LocalizedHeroSection = ({
   country,
   countryCode,
   headline,
-  subheadline,
 }: LocalizedHeroProps) => {
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center pt-20 pb-8 md:pt-24 md:pb-16 overflow-hidden">
+    <section className="relative min-h-[100dvh] flex flex-col justify-center pt-16 pb-4 md:pt-20 md:pb-8 overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0">
         <video 
@@ -41,22 +41,22 @@ const LocalizedHeroSection = ({
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 flex-1 flex flex-col">
-        <div className="flex-1 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <div className="container relative z-10 flex-1 flex flex-col justify-center">
+        <div className="grid lg:grid-cols-2 gap-4 lg:gap-12 items-center">
           
           {/* Left Content */}
           <div className="text-center lg:text-left order-1">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-6 text-white">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-2 md:mb-4 text-white">
               {headline}{" "}
               <span className="text-primary">{country}</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/80 mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              {subheadline}
+            <p className="text-sm md:text-lg text-white/80 mb-3 md:mb-6 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              AI-powered omnichannel contact center. Unify calls, WhatsApp & email.
             </p>
 
-            {/* Key Stats */}
-            <div className="hidden md:flex items-center gap-8 text-white/70">
+            {/* Key Stats - Desktop only */}
+            <div className="hidden md:flex items-center gap-8 text-white/70 mb-4">
               <div className="text-center lg:text-left">
                 <div className="text-2xl font-bold text-white">40%</div>
                 <div className="text-sm">Reduced Handling Time</div>
@@ -71,6 +71,10 @@ const LocalizedHeroSection = ({
                 <div className="text-2xl font-bold text-white">60%</div>
                 <div className="text-sm">Cost Reduction</div>
               </div>
+            </div>
+
+            <div className="hidden lg:block">
+              <HeroTrustStrip />
             </div>
           </div>
 

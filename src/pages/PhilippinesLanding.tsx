@@ -2,13 +2,13 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import LocalizedHeroSection from "@/components/LocalizedHeroSection";
 import SEOHead from "@/components/SEOHead";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const ChannelsSection = lazy(() => import("@/components/ChannelsSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const ContactForm = lazy(() => import("@/components/ContactForm"));
 const Footer = lazy(() => import("@/components/Footer"));
-const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
 const SecuritySection = lazy(() => import("@/components/SecuritySection"));
 const ClientsSection = lazy(() => import("@/components/ClientsSection"));
 const SentimentSection = lazy(() => import("@/components/SentimentSection"));
@@ -28,8 +28,7 @@ const philippinesContent = {
   country: "Philippines",
   countryCode: "+63",
   headline: "Best Contact Center Software in",
-  subheadline:
-    "The Philippines' leading cloud contact center platform. NPC compliant with AI-powered automation, multilingual support in Filipino, English & Cebuano for BPO and enterprise operations.",
+  subheadline: "AI-powered BPO contact center with Filipino voice bot & omnichannel support.",
   benefits: [
     "NPC & Data Privacy Act Compliant",
     "Filipino & English AI Voice Bot",
@@ -73,56 +72,12 @@ const PhilippinesLanding = () => {
     "areaServed": ["Manila", "Cebu", "Davao", "Philippines"]
   };
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Contact Center Software",
-    "provider": {
-      "@type": "Organization",
-      "name": "Haloocom"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Philippines"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Contact Center Solutions",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "BPO Contact Center Platform",
-            "description": "Enterprise-grade contact center solution for Philippine BPO industry"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "AI Voice Bot",
-            "description": "Filipino & English speaking AI voice assistant"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Omnichannel Platform",
-            "description": "WhatsApp, Viber, voice, email, SMS integration"
-          }
-        }
-      ]
-    }
-  };
-
   return (
     <>
       <SEOHead
         title="Best Call Center Software Philippines 2025 | BPO Contact Center Solution Manila"
-        description="#1 contact center software in the Philippines. AI-powered BPO solution with Filipino voice bot, omnichannel support, Viber & WhatsApp integration. Free demo + 14-day trial. Trusted by 500+ businesses."
-        keywords="call center software Philippines, contact center Philippines, BPO software Philippines, cloud call center Manila, best call center software Philippines 2025, customer service platform Philippines, AI call center Philippines, omnichannel contact center Philippines, cloud telephony Manila, IVR solutions Philippines, CRM dialer Philippines, BPO contact center solution, call center software Cebu, call center software Davao, outbound dialer Philippines, predictive dialer Philippines, Viber business API Philippines"
+        description="#1 AI-powered BPO contact center software Philippines. Filipino voice bot, predictive dialer, WhatsApp & Viber integration, NPC compliant. Free demo. Trusted by 500+ enterprises."
+        keywords="call center software Philippines, BPO software Philippines, contact center Manila, cloud call center Philippines 2025, predictive dialer Philippines, AI call center Philippines, outbound dialer Philippines, customer service platform Philippines, omnichannel contact center Philippines, IVR solutions Philippines, CRM dialer Philippines, call center software Cebu, call center software Davao, Viber business API Philippines, WhatsApp business Philippines, automatic call distribution Philippines, workforce management BPO, quality monitoring software Philippines"
         canonical="https://halooconnect.com/philippines"
         schema={localBusinessSchema}
       />
@@ -130,25 +85,24 @@ const PhilippinesLanding = () => {
         <Header />
         <LocalizedHeroSection {...philippinesContent} />
         <Suspense fallback={<SectionLoader />}>
-          <LocalizedOutcomesSection country="Philippines" />
-          <LocalizedTopFeaturesSection country="Philippines" />
+          <ScrollReveal><LocalizedOutcomesSection country="Philippines" /></ScrollReveal>
+          <ScrollReveal delay={50}><LocalizedTopFeaturesSection country="Philippines" /></ScrollReveal>
           <MidPageCTA variant="secondary" country="Philippines" />
-          <SentimentSection />
-          <HexaAISection />
+          <ScrollReveal><SentimentSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaAISection /></ScrollReveal>
           <MidPageCTA variant="primary" country="Philippines" />
-          <BusinessIntelligenceSection />
-          <HexaPerformanceSection />
-          <DeploymentSection />
-          <FeaturesSection />
+          <ScrollReveal><BusinessIntelligenceSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaPerformanceSection /></ScrollReveal>
+          <ScrollReveal><DeploymentSection /></ScrollReveal>
+          <ScrollReveal><FeaturesSection /></ScrollReveal>
           <MidPageCTA variant="secondary" country="Philippines" />
-          <ChannelsSection />
-          <SecuritySection />
-          <ClientsSection />
-          <TestimonialsSection />
+          <ScrollReveal><ChannelsSection /></ScrollReveal>
+          <ScrollReveal><SecuritySection /></ScrollReveal>
+          <ScrollReveal><ClientsSection /></ScrollReveal>
+          <ScrollReveal><TestimonialsSection /></ScrollReveal>
           <ContactForm />
           <LocalizedCTASection country="Philippines" />
           <Footer />
-          <FloatingCTA />
           <ExitIntentPopup />
         </Suspense>
       </main>

@@ -47,82 +47,82 @@
     "countriesDesc": "Global presence and support"
   },
   "features": {
-    "title": "Powerful Features",
-    "subtitle": "Everything you need to transform your contact center",
-    "scheduleDemo": "Schedule Your Demo Now",
-    "voice": "Voice Excellence",
-    "voiceDesc": "Predictive dialing, blended call handling, and intelligent routing for maximum agent productivity.",
-    "omnichannel": "Omnichannel Messaging",
-    "omnichannelDesc": "WhatsApp, Telegram, Email, SMS - all unified in one powerful platform.",
-    "ai": "AI Powered",
-    "aiDesc": "Real-time sentiment analysis, AI scoring, and intelligent call transcription.",
-    "analytics": "Advanced Analytics",
-    "analyticsDesc": "Real-time dashboards, performance metrics, and actionable insights.",
-    "crm": "CRM Integration",
-    "crmDesc": "Seamless integration with popular CRM and ERP systems.",
-    "social": "Social Media",
-    "socialDesc": "Facebook, Instagram integration for complete social engagement."
+    "title": "Powerful Cloud Contact Center Features",
+    "subtitle": "Everything your enterprise call center needs — predictive dialer, IVR, CRM integration & AI automation",
+    "scheduleDemo": "Schedule Your Free Demo Now",
+    "voice": "Predictive Dialer & Call Routing",
+    "voiceDesc": "Maximize agent talk time with predictive dialing, automatic call distribution (ACD), and smart call routing for inbound & outbound call centers.",
+    "omnichannel": "Omnichannel Contact Center",
+    "omnichannelDesc": "WhatsApp Business API, Telegram, Email, SMS — unified omnichannel platform for seamless customer engagement.",
+    "ai": "AI-Powered Call Center Software",
+    "aiDesc": "Real-time sentiment analysis, AI quality monitoring, intelligent call transcription & automated agent scoring.",
+    "analytics": "Real-Time Analytics & Reporting",
+    "analyticsDesc": "Live dashboards, workforce management analytics, call center KPIs, and actionable performance insights.",
+    "crm": "CRM & ERP Integration",
+    "crmDesc": "Seamless integration with Salesforce, Zoho, HubSpot, SAP, and other popular CRM & ERP systems.",
+    "social": "Social Media Integration",
+    "socialDesc": "Facebook Messenger, Instagram DM integration for complete omnichannel customer service."
   },
   "outcomes": {
-    "headline": "Guaranteed Outcomes with",
-    "description": "Connect 6.0 delivers measurable and impactful results across your organization, ensuring a significant return on your investment:",
-    "productivity": "Productivity Boost",
-    "productivityDesc": "Increase in overall workforce output and agent effectiveness.",
-    "efficiency": "Operational Efficiency",
-    "efficiencyDesc": "Improvement across all business processes, from handling inquiries to issue resolution.",
-    "dataSpeed": "Data Processing Speed",
-    "dataSpeedDesc": "Faster analysis of customer interactions for quicker insights and decision-making.",
+    "headline": "Proven ROI with",
+    "description": "Enterprise call center software that delivers measurable results — reduce costs, boost agent productivity, and improve customer satisfaction scores.",
+    "productivity": "Agent Productivity",
+    "productivityDesc": "Boost in agent output with predictive dialing, automatic call distribution & AI assistance.",
+    "efficiency": "First Call Resolution",
+    "efficiencyDesc": "Higher FCR rates through smart call routing, CRM integration & real-time agent coaching.",
+    "dataSpeed": "Faster Insights",
+    "dataSpeedDesc": "AI-powered analytics process customer interactions instantly for real-time decision making.",
     "costReduction": "Cost Reduction",
-    "costReductionDesc": "Significant savings on operational expenses through automation and optimized resource allocation."
+    "costReductionDesc": "Lower operational costs through cloud deployment, IVR automation & workforce optimization."
   },
   "topFeatures": {
     "headline": "Top Features of",
-    "description": "Explore the innovative functionalities that make Connect 6.0 the leading AI-powered contact center solution.",
-    "predictiveDialing": "Predictive Dialing",
-    "predictiveDialingDesc": "Maximize agent talk time by automatically dialing numbers and connecting available agents only to live calls.",
-    "blendedCalls": "Blended Call Handling",
-    "blendedCallsDesc": "Seamlessly manage both inbound and outbound calls, optimizing agent productivity and customer service.",
-    "ivr": "Drag & Drop IVR",
-    "ivrDesc": "Effortlessly design intuitive interactive voice response menus with a user-friendly visual interface.",
-    "stickyAgents": "Sticky Agents",
-    "stickyAgentsDesc": "Ensure customers are routed to the same agent for continuity, enhancing personalization and resolution rates.",
-    "inbuiltCrm": "Inbuilt CRM",
-    "inbuiltCrmDesc": "Access comprehensive customer data and interaction history directly within the platform for informed service.",
-    "socialMedia": "Social Media Integration",
-    "socialMediaDesc": "Engage customers on popular platforms like Facebook and Instagram for a truly omnichannel experience.",
+    "description": "Enterprise-grade call center software with predictive dialer, IVR builder, CRM integration, WhatsApp API & AI-powered quality monitoring.",
+    "predictiveDialing": "Predictive Dialer",
+    "predictiveDialingDesc": "Auto-dial technology maximizes agent talk time by 300%. Best predictive dialer for outbound call centers.",
+    "blendedCalls": "Inbound & Outbound Blending",
+    "blendedCallsDesc": "Seamlessly manage inbound customer service and outbound sales calls — optimize agent utilization across campaigns.",
+    "ivr": "Visual IVR Builder",
+    "ivrDesc": "Drag & drop interactive voice response designer. Build multi-level IVR menus without coding.",
+    "stickyAgents": "Intelligent Call Routing",
+    "stickyAgentsDesc": "ACD with skill-based routing, sticky agents & priority queues. Route calls to the best available agent.",
+    "inbuiltCrm": "Built-in CRM & Lead Management",
+    "inbuiltCrmDesc": "Track leads, manage customer data & view complete interaction history — built right into your call center platform.",
+    "socialMedia": "Social Media Customer Service",
+    "socialMediaDesc": "Handle Facebook Messenger & Instagram DMs alongside calls — true omnichannel customer engagement platform.",
     "whatsapp": "WhatsApp Business API",
-    "whatsappDesc": "Connect via Email, WhatsApp, and SMS, providing diverse options for customer interaction.",
-    "thirdPartyCrm": "3rd Party CRM & ERP",
-    "thirdPartyCrmDesc": "Integrate with existing CRM and ERP systems for a unified data view and streamlined workflows.",
+    "whatsappDesc": "Official WhatsApp Business API integration for automated messaging, bulk campaigns & customer support.",
+    "thirdPartyCrm": "CRM & ERP Integration",
+    "thirdPartyCrmDesc": "Pre-built connectors for Salesforce, Zoho, HubSpot, SAP. Unified data view across your tech stack.",
     "sentiment": "AI Sentiment Analysis",
-    "sentimentDesc": "Understand customer emotions in real-time, allowing supervisors to respond proactively.",
-    "scoring": "AI Scoring Model",
-    "scoringDesc": "Utilize AI to evaluate agent performance and customer interactions, driving continuous improvement.",
+    "sentimentDesc": "Real-time customer emotion detection. Automatically flag escalations and coach agents with AI insights.",
+    "scoring": "Automated Quality Monitoring",
+    "scoringDesc": "AI-powered agent scoring replaces manual QA. Score 100% of calls automatically against custom criteria.",
     "bi": "AI Business Intelligence",
-    "biDesc": "Gain actionable insights from your data with AI-powered analytics, optimizing strategies and outcomes.",
-    "transcription": "Transcription & Summary",
-    "transcriptionDesc": "Automatically transcribe voice calls and generate concise summaries for easy review and compliance."
+    "biDesc": "Search through millions of call recordings instantly. AI-powered analytics surface trends & actionable insights.",
+    "transcription": "Call Transcription & Summary",
+    "transcriptionDesc": "Automatic speech-to-text transcription with AI-generated call summaries for compliance & training."
   },
   "cta": {
-    "limitedOffer": "Limited Time Offer",
-    "title": "Ready to Transform Your Contact Center?",
-    "subtitle": "Get 14 days free access to Connect 6.0. No credit card required. Full features included.",
-    "scheduleDemo": "Schedule Free Demo",
-    "callUs": "Call Us Now",
+    "limitedOffer": "Free Demo Available",
+    "title": "Switch to the Best AI Call Center Software",
+    "subtitle": "14-day free trial. No credit card. Full-feature access to predictive dialer, IVR, CRM, WhatsApp API & AI analytics.",
+    "scheduleDemo": "Get Free Demo",
+    "callUs": "Talk to Sales",
     "noCreditCard": "No Credit Card Required",
     "freeTrial": "14-Day Free Trial",
     "cancelAnytime": "Cancel Anytime"
   },
   "footer": {
-    "description": "AI-powered telecom solutions for your business. From advanced Contact Center software to seamless Business Communication apps.",
+    "description": "Enterprise AI-powered contact center software. Cloud call center solution with predictive dialer, IVR, WhatsApp API, CRM integration & AI analytics.",
     "quickLinks": "Quick Links",
     "home": "Home",
     "aboutUs": "About Us",
     "contactUs": "Contact Us",
     "blog": "Blog",
-    "services": "Services",
-    "contactCenter": "Contact Center",
-    "hexaAi": "Hexa AI",
+    "services": "Solutions",
+    "contactCenter": "Cloud Contact Center",
+    "hexaAi": "AI Voice Bot",
     "unifiedComm": "Unified Communications",
     "crmDialer": "CRM Dialer",
     "ourPresence": "Our Presence",
@@ -220,74 +220,74 @@
     }
   },
   "sentiment": {
-    "title": "Advanced Sentiment Analysis",
-    "titleHighlight": "& Quality Assurance",
-    "description": "Transform quality assurance from a time-consuming manual process into an intelligent, scalable system that provides coaching opportunities and ensures compliance across every interaction.",
+    "title": "AI Quality Monitoring",
+    "titleHighlight": "& Sentiment Analysis",
+    "description": "Replace manual QA with AI-powered quality monitoring. Automatically score 100% of calls, detect customer sentiment in real-time, and coach agents with data-driven insights.",
     "step1": {
-      "title": "Real-Time Transcription",
-      "description": "Every call is automatically transcribed with industry-leading accuracy, creating searchable text records."
+      "title": "Speech-to-Text Transcription",
+      "description": "Automatic call transcription with 95%+ accuracy. Search across all recordings instantly."
     },
     "step2": {
-      "title": "Sentiment Detection",
-      "description": "Our AI analyzes emotional tone, detecting frustration, satisfaction, or urgency."
+      "title": "Real-Time Sentiment Detection",
+      "description": "AI analyzes customer emotions live — flag escalations, detect frustration & identify upsell opportunities."
     },
     "step3": {
-      "title": "Intelligent Scoring",
-      "description": "Automated quality audits score agent performance against customizable criteria and compliance standards."
+      "title": "Automated Agent Scoring",
+      "description": "AI quality audits score every call against compliance standards. Replace manual QA sampling with 100% coverage."
     },
     "step4": {
-      "title": "Actionable Summaries",
-      "description": "AI-generated call summaries highlight key points, outcomes, and follow-up actions needed."
+      "title": "AI Call Summaries",
+      "description": "Auto-generated call summaries with key topics, outcomes & follow-up actions. Save hours of manual review."
     }
   },
   "businessIntelligence": {
-    "title": "AI-Powered Business Intelligence:",
-    "titleHighlight": "Search at the Speed of Thought",
-    "subtitle": "Google-Like Search Across Voice Data",
-    "description1": "Imagine having the power to search through millions of voice recordings as easily as searching the web. Connect 6.0's revolutionary AI-based Business Intelligence tool transforms your voice data into actionable insights.",
-    "description2": "Our advanced text-based search engine indexes every conversation, making it effortless to find specific interactions, topics, or customer mentions across your entire call history. No more endless listening sessions – just instant, relevant results.",
-    "feature1": "Search millions of recordings in seconds",
-    "feature2": "Natural language queries that understand context",
-    "feature3": "Filter by agent, date, sentiment, or custom parameters",
-    "feature4": "Surface trends and patterns automatically",
-    "cta": "Explore BI Features"
+    "title": "Call Center Analytics &",
+    "titleHighlight": "AI Business Intelligence",
+    "subtitle": "Search Millions of Call Recordings Instantly",
+    "description1": "Search through your entire call history as easily as searching the web. Connect 6.0's AI-powered business intelligence transforms voice data into actionable call center analytics and workforce insights.",
+    "description2": "Advanced speech analytics indexes every conversation automatically. Find specific customer mentions, compliance issues, or trending topics across millions of recordings in seconds — not hours.",
+    "feature1": "Search millions of call recordings instantly",
+    "feature2": "Natural language queries with context understanding",
+    "feature3": "Filter by agent, date, sentiment, or custom KPIs",
+    "feature4": "Automated trend detection & predictive insights",
+    "cta": "Explore Analytics"
   },
   "hexaPerformance": {
-    "title": "HEXA AI in Action:",
-    "titleHighlight": "Real-World Performance",
-    "description": "HEXA AI delivers measurable results that impact your bottom line. Organizations leveraging our voice bot technology see dramatic improvements in efficiency, customer satisfaction, and operational costs within the first quarter of deployment.",
+    "title": "AI Voice Bot ROI:",
+    "titleHighlight": "Measurable Results",
+    "description": "Enterprises using HEXA AI voice bot see 60% cost reduction, 3X capacity increase & 85% first-call resolution within 90 days. The best AI call center automation for inbound & outbound operations.",
     "stat1": {
-      "title": "Call Resolution Rate",
-      "description": "HEXA successfully resolves customer inquiries without human intervention"
+      "title": "First Call Resolution",
+      "description": "AI voice bot resolves customer queries without human intervention — reducing AHT & transfer rates"
     },
     "stat2": {
-      "title": "Capacity Increase",
-      "description": "Handle triple the customer interactions with the same team size"
+      "title": "3X Capacity",
+      "description": "Handle triple the call volume with the same team size using AI-powered automation"
     },
     "stat3": {
-      "title": "Cost Reduction",
-      "description": "Lower operational expenses while improving customer satisfaction scores"
+      "title": "60% Cost Savings",
+      "description": "Reduce operational costs while improving CSAT scores through intelligent call routing & automation"
     },
     "stat4": {
-      "title": "Response Time",
-      "description": "Instant answers that keep customers engaged and satisfied"
+      "title": "Sub-Second Response",
+      "description": "Instant AI responses keep customers engaged — no hold times, no queue abandonment"
     }
   },
   "channels": {
-    "label": "Omnichannel",
-    "title": "All Your Channels,",
-    "titleHighlight": "One Platform",
-    "description": "Connect with your customers on their preferred channels. Voice, WhatsApp, Email, SMS, and social media - all unified in a single, powerful dashboard.",
+    "label": "Omnichannel Platform",
+    "title": "Omnichannel Contact Center:",
+    "titleHighlight": "One Unified Platform",
+    "description": "Voice, WhatsApp Business API, Email, SMS, Facebook & Instagram — unified in one cloud contact center dashboard with complete interaction history.",
     "voiceCalls": "Voice Calls",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "WhatsApp API",
     "email": "Email",
     "sms": "SMS",
     "facebook": "Facebook",
     "instagram": "Instagram",
-    "benefit1": "Unified conversation history across all channels",
-    "benefit2": "Seamless handoff between channels",
-    "benefit3": "Single view of customer interactions",
-    "cta": "Start Free Trial"
+    "benefit1": "360° customer view across all channels",
+    "benefit2": "Seamless cross-channel handoff & routing",
+    "benefit3": "Unified agent desktop for all interactions",
+    "cta": "Get Free Demo"
   },
   "clients": {
     "title": "Trusted by",
@@ -297,22 +297,22 @@
     "footer": "Join the ranks of businesses transforming their customer experience with Connect 6.0."
   },
   "hexaAI": {
-    "title": "Meet HEXA AI: Your",
-    "titleHighlight": "Multilingual Digital Workforce",
-    "description": "HEXA AI isn't just a bot – it's a versatile digital employee that speaks your customers' language, literally.",
+    "title": "HEXA AI Voice Bot:",
+    "titleHighlight": "120+ Language Support",
+    "description": "The best AI voice bot for call centers. HEXA handles inbound & outbound calls in 120+ languages — sales, support, collections & appointment scheduling on autopilot.",
     "feature1": {
       "title": "120+ Languages",
-      "description": "Interact naturally with customers worldwide in over 120 languages, breaking down communication barriers and expanding your global reach effortlessly."
+      "description": "Multilingual AI voice bot speaks English, Arabic, Hindi, Mandarin, Malay, Filipino, Tamil & 115+ more languages natively."
     },
     "feature2": {
-      "title": "Multi-Persona Capability",
-      "description": "HEXA adapts its personality and approach based on the task – becoming a persuasive sales representative, a patient support specialist, or a firm collections agent as needed."
+      "title": "Sales, Support & Collections",
+      "description": "HEXA adapts persona by task — AI sales agent, patient support specialist, or automated collections agent. Handles outbound campaigns at scale."
     },
     "feature3": {
-      "title": "Always Available",
-      "description": "Provide 24/7 customer service without the overhead, handling routine inquiries while seamlessly escalating complex issues to human agents."
+      "title": "24/7 Automated Customer Service",
+      "description": "Zero hold times, zero abandoned calls. AI handles routine queries and seamlessly transfers complex issues to live agents."
     },
-    "cta": "Experience HEXA AI"
+    "cta": "Try HEXA AI Free"
   },
   "aboutUs": {
     "label": "About Us",
