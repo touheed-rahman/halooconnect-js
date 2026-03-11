@@ -35,11 +35,11 @@ const CountryCodeSelect = ({ value, onChange, disabled = false }: CountryCodeSel
       <button
         type="button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
-        className={`flex items-center gap-1 h-10 sm:h-11 px-2 sm:px-3 rounded-l-lg border border-r-0 border-input bg-background transition-colors min-w-[72px] sm:min-w-[90px] ${disabled ? 'cursor-default' : 'hover:bg-accent'}`}
+        className={`flex items-center gap-1.5 h-10 sm:h-11 px-3 rounded-l-lg border border-r-0 border-input bg-background transition-colors min-w-[80px] sm:min-w-[90px] active:bg-accent ${disabled ? 'cursor-default' : 'hover:bg-accent'}`}
       >
-        <span className="text-base sm:text-xl">{selectedCountry.flag}</span>
+        <span className="text-lg sm:text-xl">{selectedCountry.flag}</span>
         <span className="text-xs sm:text-sm font-medium text-foreground">{selectedCountry.code}</span>
-        {!disabled && <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />}
+        {!disabled && <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />}
       </button>
       
       {isOpen && (
@@ -57,7 +57,7 @@ const CountryCodeSelect = ({ value, onChange, disabled = false }: CountryCodeSel
                   onChange(country.code);
                   setIsOpen(false);
                 }}
-                className={`flex items-center gap-3 w-full px-4 py-2.5 text-left hover:bg-muted transition-colors ${
+                className={`flex items-center gap-3 w-full px-4 py-3 text-left hover:bg-muted transition-colors ${
                   value === country.code ? "bg-primary/10" : ""
                 }`}
               >
