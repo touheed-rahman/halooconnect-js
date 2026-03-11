@@ -2,13 +2,13 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import LocalizedHeroSection from "@/components/LocalizedHeroSection";
 import SEOHead from "@/components/SEOHead";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const ChannelsSection = lazy(() => import("@/components/ChannelsSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const ContactForm = lazy(() => import("@/components/ContactForm"));
 const Footer = lazy(() => import("@/components/Footer"));
-const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
 const SecuritySection = lazy(() => import("@/components/SecuritySection"));
 const ClientsSection = lazy(() => import("@/components/ClientsSection"));
 const SentimentSection = lazy(() => import("@/components/SentimentSection"));
@@ -28,8 +28,7 @@ const singaporeContent = {
   country: "Singapore",
   countryCode: "+65",
   headline: "Enterprise Contact Center Software in",
-  subheadline:
-    "Singapore's trusted cloud contact center platform. PDPA compliant with AI-powered automation, multilingual support in English, Mandarin, Malay & Tamil.",
+  subheadline: "PDPA compliant AI contact center with multilingual voice bot support.",
   benefits: [
     "PDPA Compliant Platform",
     "Multilingual AI Voice Bot",
@@ -75,9 +74,9 @@ const SingaporeLanding = () => {
   return (
     <>
       <SEOHead 
-        title="Best Contact Center Software Singapore 2025 | Cloud Call Center Solution"
-        description="#1 enterprise contact center software in Singapore. PDPA compliant, AI-powered with multilingual voice bot (English, Mandarin, Malay). Free demo + 14-day trial."
-        keywords="contact center software Singapore, call center Singapore, cloud contact center Singapore, customer service platform Singapore, AI call center Singapore, PDPA compliant, omnichannel Singapore, cloud telephony Singapore, IVR solutions Singapore, enterprise call center Singapore, best call center software 2025"
+        title="Best Contact Center Software Singapore 2025 | AI Cloud Call Center Solution"
+        description="#1 AI-powered enterprise contact center Singapore. PDPA compliant, multilingual voice bot (English, Mandarin, Malay, Tamil), predictive dialer, omnichannel. Free demo."
+        keywords="contact center software Singapore, call center Singapore, cloud contact center Singapore, customer service platform Singapore, AI call center Singapore, PDPA compliant contact center, omnichannel Singapore, cloud telephony Singapore, IVR solutions Singapore, enterprise call center Singapore, best call center software 2025, predictive dialer Singapore, workforce management Singapore, automatic call distribution Singapore, CRM integration Singapore"
         canonical="https://halooconnect.com/singapore"
         schema={localBusinessSchema}
       />
@@ -85,25 +84,24 @@ const SingaporeLanding = () => {
         <Header />
         <LocalizedHeroSection {...singaporeContent} />
         <Suspense fallback={<SectionLoader />}>
-          <LocalizedOutcomesSection country="Singapore" />
-          <LocalizedTopFeaturesSection country="Singapore" />
+          <ScrollReveal><LocalizedOutcomesSection country="Singapore" /></ScrollReveal>
+          <ScrollReveal delay={50}><LocalizedTopFeaturesSection country="Singapore" /></ScrollReveal>
           <MidPageCTA variant="secondary" country="Singapore" />
-          <SentimentSection />
-          <HexaAISection />
+          <ScrollReveal><SentimentSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaAISection /></ScrollReveal>
           <MidPageCTA variant="primary" country="Singapore" />
-          <BusinessIntelligenceSection />
-          <HexaPerformanceSection />
-          <DeploymentSection />
-          <FeaturesSection />
+          <ScrollReveal><BusinessIntelligenceSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaPerformanceSection /></ScrollReveal>
+          <ScrollReveal><DeploymentSection /></ScrollReveal>
+          <ScrollReveal><FeaturesSection /></ScrollReveal>
           <MidPageCTA variant="secondary" country="Singapore" />
-          <ChannelsSection />
-          <SecuritySection />
-          <ClientsSection />
-          <TestimonialsSection />
+          <ScrollReveal><ChannelsSection /></ScrollReveal>
+          <ScrollReveal><SecuritySection /></ScrollReveal>
+          <ScrollReveal><ClientsSection /></ScrollReveal>
+          <ScrollReveal><TestimonialsSection /></ScrollReveal>
           <ContactForm />
           <LocalizedCTASection country="Singapore" />
           <Footer />
-          <FloatingCTA />
           <ExitIntentPopup />
         </Suspense>
       </main>

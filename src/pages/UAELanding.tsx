@@ -2,13 +2,13 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import LocalizedHeroSection from "@/components/LocalizedHeroSection";
 import SEOHead from "@/components/SEOHead";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const ChannelsSection = lazy(() => import("@/components/ChannelsSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const ContactForm = lazy(() => import("@/components/ContactForm"));
 const Footer = lazy(() => import("@/components/Footer"));
-const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
 const SecuritySection = lazy(() => import("@/components/SecuritySection"));
 const ClientsSection = lazy(() => import("@/components/ClientsSection"));
 const SentimentSection = lazy(() => import("@/components/SentimentSection"));
@@ -28,8 +28,7 @@ const uaeContent = {
   country: "UAE & Dubai",
   countryCode: "+971",
   headline: "Best Call Center Software in",
-  subheadline:
-    "Leading Cloud Contact Center Solution in Dubai & UAE. Trusted by 500+ enterprises for AI-powered customer engagement, omnichannel support, and Arabic language capabilities.",
+  subheadline: "AI-powered cloud contact center with Arabic voice bot & WhatsApp API.",
   benefits: [
     "Arabic & English AI Voice Bot",
     "WhatsApp Business API Integration",
@@ -72,48 +71,12 @@ const UAELanding = () => {
     "areaServed": ["Dubai", "Abu Dhabi", "Sharjah", "UAE"]
   };
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Contact Center Software",
-    "provider": {
-      "@type": "Organization",
-      "name": "Haloocom"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "United Arab Emirates"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Contact Center Solutions",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "AI Voice Bot",
-            "description": "Arabic & English speaking AI voice assistant"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Omnichannel Platform",
-            "description": "WhatsApp, voice, email, SMS integration"
-          }
-        }
-      ]
-    }
-  };
-
   return (
     <>
       <SEOHead 
-        title="Best Call Center Software Dubai & UAE 2025 | Cloud Contact Center Solution"
-        description="#1 rated call center software in Dubai & UAE. AI-powered with Arabic voice bot, WhatsApp Business API, omnichannel support. Free demo + 14-day trial. 500+ UAE businesses trust us."
-        keywords="call center software Dubai, contact center UAE, cloud call center Dubai, best call center software UAE 2025, customer service software Dubai, AI call center UAE, WhatsApp business API Dubai, Arabic voice bot, omnichannel contact center UAE, cloud telephony Dubai, IVR solutions UAE, CRM dialer Dubai"
+        title="Best Call Center Software Dubai & UAE 2025 | AI Cloud Contact Center Solution"
+        description="#1 AI-powered call center software Dubai & UAE. Arabic voice bot, WhatsApp Business API, predictive dialer, omnichannel support. Free demo + 14-day trial. 500+ UAE businesses trust us."
+        keywords="call center software Dubai, contact center UAE, cloud call center Dubai, best call center software UAE 2025, customer service software Dubai, AI call center UAE, WhatsApp business API Dubai, Arabic voice bot, omnichannel contact center UAE, cloud telephony Dubai, IVR solutions UAE, CRM dialer Dubai, predictive dialer UAE, automatic call distribution Dubai, workforce management UAE, quality monitoring Dubai, outbound dialer UAE, inbound call center Dubai"
         canonical="https://halooconnect.com/uae"
         schema={localBusinessSchema}
       />
@@ -121,25 +84,24 @@ const UAELanding = () => {
         <Header />
         <LocalizedHeroSection {...uaeContent} />
         <Suspense fallback={<SectionLoader />}>
-          <LocalizedOutcomesSection country="UAE & Dubai" />
-          <LocalizedTopFeaturesSection country="UAE & Dubai" />
+          <ScrollReveal><LocalizedOutcomesSection country="UAE & Dubai" /></ScrollReveal>
+          <ScrollReveal delay={50}><LocalizedTopFeaturesSection country="UAE & Dubai" /></ScrollReveal>
           <MidPageCTA variant="secondary" country="UAE & Dubai" />
-          <SentimentSection />
-          <HexaAISection />
+          <ScrollReveal><SentimentSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaAISection /></ScrollReveal>
           <MidPageCTA variant="primary" country="UAE & Dubai" />
-          <BusinessIntelligenceSection />
-          <HexaPerformanceSection />
-          <DeploymentSection />
-          <FeaturesSection />
+          <ScrollReveal><BusinessIntelligenceSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaPerformanceSection /></ScrollReveal>
+          <ScrollReveal><DeploymentSection /></ScrollReveal>
+          <ScrollReveal><FeaturesSection /></ScrollReveal>
           <MidPageCTA variant="secondary" country="UAE & Dubai" />
-          <ChannelsSection />
-          <SecuritySection />
-          <ClientsSection />
-          <TestimonialsSection />
+          <ScrollReveal><ChannelsSection /></ScrollReveal>
+          <ScrollReveal><SecuritySection /></ScrollReveal>
+          <ScrollReveal><ClientsSection /></ScrollReveal>
+          <ScrollReveal><TestimonialsSection /></ScrollReveal>
           <ContactForm />
           <LocalizedCTASection country="UAE & Dubai" />
           <Footer />
-          <FloatingCTA />
           <ExitIntentPopup />
         </Suspense>
       </main>
