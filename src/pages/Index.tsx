@@ -1,8 +1,7 @@
-import { lazy, Suspense, useState, useCallback } from "react";
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SEOHead from "@/components/SEOHead";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
 import TrustBanner from "@/components/TrustBanner";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -30,14 +29,6 @@ const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
 const SectionLoader = () => <div className="min-h-[200px]" />;
 
 const Index = () => {
-  const [showPopupForm, setShowPopupForm] = useState(false);
-
-  const handleFormClick = useCallback(() => {
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -79,7 +70,7 @@ const Index = () => {
         canonical="https://halooconnect.com"
         schema={faqSchema}
       />
-      <main className="min-h-screen pb-16 sm:pb-0">
+      <main className="min-h-screen">
         <Header />
         <HeroSection />
         <TrustBanner />
@@ -106,7 +97,6 @@ const Index = () => {
           
           <ExitIntentPopup />
         </Suspense>
-        <StickyMobileCTA onFormClick={handleFormClick} />
       </main>
     </>
   );

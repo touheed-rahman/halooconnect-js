@@ -1,12 +1,24 @@
 import { ArrowDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import heroContactCenterVideo from "@/assets/hero-contact-center.mp4";
+import { useEffect, useState } from "react";
 import heroContactCenterPoster from "@/assets/hero-contact-center.jpg";
 import HeroForm from "./HeroForm";
 import HeroTrustStrip from "./HeroTrustStrip";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+  // Only load video on desktop after page is interactive
+  useEffect(() => {
+    if (!isMobile) {
+      import("@/assets/hero-contact-center.mp4").then((mod) => {
+        setVideoSrc(mod.default);
+      });
+    }
+  }, [isMobile]);
 
   const scrollToNext = () => {
     const next = document.getElementById('trust-banner');
@@ -17,16 +29,25 @@ const HeroSection = () => {
     <section className="relative min-h-[100dvh] flex flex-col justify-center pt-16 pb-4 md:pt-20 md:pb-8 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <video 
-          src={heroContactCenterVideo} 
-          poster={heroContactCenterPoster}
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover" 
-        />
+        {videoSrc ? (
+          <video 
+            src={videoSrc} 
+            poster={heroContactCenterPoster}
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            preload="none"
+            className="w-full h-full object-cover" 
+          />
+        ) : (
+          <img 
+            src={heroContactCenterPoster} 
+            alt="" 
+            className="w-full h-full object-cover"
+            fetchPriority="high"
+          />
+        )}
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/55 to-black/45" />
       </div>
