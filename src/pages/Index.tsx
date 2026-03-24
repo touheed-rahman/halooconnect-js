@@ -30,13 +30,6 @@ const SectionLoader = () => <div className="min-h-[200px]" />;
 
 const Index = () => {
 
-  const handleFormClick = useCallback(() => {
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
