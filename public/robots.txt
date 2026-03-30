@@ -4,4 +4,4 @@ Disallow: /admin
 Disallow: /admin/blog
 Disallow: /thank-you
 
-Sitemap: https://halooconnect.com/sitemap.xml
+Sitemap: https://connect.haloocom.com/sitemap.xml

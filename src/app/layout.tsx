@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     path: "",
   }),
-  metadataBase: new URL("https://halooconnect.com"),
+  metadataBase: new URL("https://connect.haloocom.com"),
   manifest: "/manifest.webmanifest",
   title: {
     default: "Haloo Connect",

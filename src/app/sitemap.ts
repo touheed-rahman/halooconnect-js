@@ -15,7 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map(({ route, priority, changeFrequency }) => ({
-    url: `https://halooconnect.com${route}`,
+    url: `https://connect.haloocom.com${route}`,
     lastModified: new Date("2026-03-30"),
     priority,
     changeFrequency,
@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllBlogPosts();
 
   const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `https://halooconnect.com/blog/${post.slug}`,
+    url: `https://connect.haloocom.com/blog/${post.slug}`,
     lastModified: post.updated_at ? new Date(post.updated_at) : new Date(post.created_at),
     priority: 0.7,
     changeFrequency: "monthly",

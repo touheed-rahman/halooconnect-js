@@ -53,11 +53,11 @@ export default async function BlogPage() {
     name: "Haloo Connect Blog",
     description:
       "Expert articles on AI contact center software, call center automation, and omnichannel customer service strategy.",
-    url: "https://halooconnect.com/blog",
+    url: "https://connect.haloocom.com/blog",
     hasPart: data.slice(0, 12).map((post) => ({
       "@type": "BlogPosting",
       headline: post.title,
-      url: `https://halooconnect.com/blog/${post.slug}`,
+      url: `https://connect.haloocom.com/blog/${post.slug}`,
       datePublished: post.published_at || post.created_at,
       author: {
         "@type": "Person",

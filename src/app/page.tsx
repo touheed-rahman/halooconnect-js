@@ -96,6 +96,38 @@ export default function Home() {
       <JsonLd data={webPageSchema} />
       <JsonLd data={serviceSchema} />
       <HomePageNext />
+      <section className="border-t border-border/60 bg-background py-12">
+        <div className="container mx-auto max-w-4xl space-y-4">
+          <h2 className="text-2xl font-bold text-foreground">
+            AI Contact Center Software for Enterprise Customer Operations
+          </h2>
+          <p className="text-base leading-8 text-muted-foreground">
+            Haloo Connect is an AI-powered cloud contact center platform designed for enterprises that manage
+            high-volume customer conversations across voice, WhatsApp, email, and SMS. Teams use the platform to
+            unify communication channels, reduce operational silos, and improve response quality with consistent
+            routing, automation, and monitoring. This AI contact center software combines intelligent queueing,
+            workflow automation, and real-time visibility so support and sales teams can make faster decisions
+            while maintaining service standards at scale.
+          </p>
+          <p className="text-base leading-8 text-muted-foreground">
+            The cloud call center platform includes IVR, predictive dialer capabilities, call analytics, and
+            multilingual AI voice automation to support both inbound and outbound programs. Businesses can connect
+            CRM and business systems to maintain conversation context, automate follow-ups, and improve first-contact
+            resolution. For organizations moving away from legacy telephony stacks, the platform provides a practical
+            modernization path with lower infrastructure complexity, improved scalability, and easier governance of
+            customer communication workflows.
+          </p>
+          <p className="text-base leading-8 text-muted-foreground">
+            Haloo Connect is built for omnichannel customer service performance, not just channel aggregation.
+            Supervisors can track agent outcomes, conversation quality, and service-level trends while teams execute
+            measurable improvement plans. Whether the goal is faster response time, better lead conversion, or higher
+            customer satisfaction, the AI contact center software supports operational excellence through unified data,
+            automation, and clear reporting. This helps enterprises in Singapore, UAE, Malaysia, Philippines, and
+            India deploy a modern customer experience stack that is reliable, adaptable, and aligned with long-term
+            growth.
+          </p>
+        </div>
+      </section>
     </>
   );
 }

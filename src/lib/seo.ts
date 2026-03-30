@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const SITE_NAME = "Haloo Connect";
-export const SITE_URL = "https://halooconnect.com";
+export const SITE_URL = "https://connect.haloocom.com";
 export const DEFAULT_DESCRIPTION =
   "AI-powered cloud contact center software with omnichannel support, WhatsApp Business API, IVR, predictive dialer, analytics, and AI voice automation.";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/opengraph-image`;
