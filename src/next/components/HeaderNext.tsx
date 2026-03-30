@@ -48,7 +48,7 @@ const HeaderNext = () => {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
       <div className="container flex h-16 items-center justify-between md:h-20">
-        <Link href="/">
+        <Link href="/" prefetch={false}>
           <img src={logo.src} alt="Haloo Connect" className="h-8 w-auto md:h-10" />
         </Link>
 
@@ -57,6 +57,7 @@ const HeaderNext = () => {
             <Link
               key={link.href}
               href={link.href}
+              prefetch={false}
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 pathname === link.href ? "text-primary" : "text-muted-foreground"
               }`}
@@ -72,7 +73,7 @@ const HeaderNext = () => {
             <DropdownMenuContent align="end">
               {regionLinks.map((link) => (
                 <DropdownMenuItem key={link.href} asChild>
-                  <Link href={link.href} className="cursor-pointer">
+                  <Link href={link.href} prefetch={false} className="cursor-pointer">
                     {link.label}
                   </Link>
                 </DropdownMenuItem>
@@ -106,6 +107,7 @@ const HeaderNext = () => {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 className={`py-2 text-sm font-medium transition-colors hover:text-primary ${
                   pathname === link.href ? "text-primary" : "text-foreground"
                 }`}
@@ -120,6 +122,7 @@ const HeaderNext = () => {
                 <Link
                   key={link.href}
                   href={link.href}
+                  prefetch={false}
                   className="block py-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >

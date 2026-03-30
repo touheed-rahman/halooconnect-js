@@ -58,6 +58,7 @@ const SeoContentSection = ({
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 {link.label}
