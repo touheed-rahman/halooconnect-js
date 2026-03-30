@@ -1,4 +1,4 @@
-import { supabaseServer } from "@/integrations/supabase/server";
+import { getSupabaseServer } from "@/integrations/supabase/server";
 import { sanityFetch } from "@/sanity/lib/client";
 import { blogPostBySlugQuery, blogPostsQuery } from "@/sanity/lib/queries";
 import { hasSanityEnv, isSanityOnlyBlogMode } from "@/sanity/env";
@@ -24,6 +24,11 @@ export async function getAllBlogPosts(): Promise<BlogPostSummary[]> {
   }
 
   if (isSanityOnlyBlogMode) {
+    return [];
+  }
+
+  const supabaseServer = getSupabaseServer();
+  if (!supabaseServer) {
     return [];
   }
 
@@ -53,6 +58,11 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   }
 
   if (isSanityOnlyBlogMode) {
+    return null;
+  }
+
+  const supabaseServer = getSupabaseServer();
+  if (!supabaseServer) {
     return null;
   }
 
