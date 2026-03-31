@@ -1,14 +1,18 @@
+import "server-only";
 import { createClient, groq } from "next-sanity";
 import { apiVersion, dataset, hasSanityEnv, projectId, useCdn } from "../env";
 
 export { groq };
+
+const readToken = process.env.SANITY_API_READ_TOKEN;
 
 export const sanityClient = hasSanityEnv
   ? createClient({
       projectId,
       dataset,
       apiVersion,
-      useCdn,
+      token: readToken,
+      useCdn: readToken ? false : useCdn,
       perspective: "published",
     })
   : null;
@@ -26,15 +30,20 @@ export async function sanityFetch<T>({
     return null;
   }
 
-  return sanityClient.fetch<T>(
-    query,
-    params,
-    tags.length > 0
+  const requestOptions = {
+    cache: "no-store" as const,
+    ...(tags.length > 0
       ? {
           next: {
             tags,
           },
         }
-      : undefined,
+      : {}),
+  };
+
+  return sanityClient.fetch<T>(
+    query,
+    params,
+    requestOptions,
   );
 }
