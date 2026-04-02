@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AnalysisPageNext from "@/next/pages/AnalysisPageNext";
 import JsonLd from "@/next/components/JsonLd";
+import AiOverviewSection from "@/components/AiOverviewSection";
 import {
   buildMetadata,
   createBreadcrumbSchema,
@@ -50,6 +51,16 @@ export default function AnalysisPage() {
       <JsonLd data={webPageSchema} />
       <JsonLd data={serviceSchema} />
       <AnalysisPageNext />
+      <AiOverviewSection
+        title="How the AI Readiness Analyzer Helps Teams Prioritize"
+        summary="The analyzer is designed for leaders who need a clear baseline before investing in AI contact center upgrades. It identifies operational friction and maps practical next steps."
+        bullets={[
+          "Highlights missed-call, routing, and response bottlenecks.",
+          "Flags automation opportunities with measurable business impact.",
+          "Provides an actionable readiness report for support and sales operations.",
+          "Supports modernization planning across omnichannel customer journeys.",
+        ]}
+      />
     </>
   );
 }

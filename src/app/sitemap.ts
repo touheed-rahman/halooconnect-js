@@ -12,11 +12,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { route: "/philippines", priority: 0.9, changeFrequency: "weekly" as const },
     { route: "/blog", priority: 0.8, changeFrequency: "daily" as const },
     { route: "/analysis", priority: 0.8, changeFrequency: "monthly" as const },
+    { route: "/llms.txt", priority: 0.6, changeFrequency: "monthly" as const },
   ];
+
+  const now = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map(({ route, priority, changeFrequency }) => ({
     url: `https://connect.haloocom.com${route}`,
-    lastModified: new Date("2026-03-30"),
+    lastModified: now,
     priority,
     changeFrequency,
   }));

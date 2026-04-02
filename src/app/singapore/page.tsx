@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import LocalizedLandingPageNext from "@/next/pages/LocalizedLandingPageNext";
 import JsonLd from "@/next/components/JsonLd";
+import AiOverviewSection from "@/components/AiOverviewSection";
 import {
   buildMetadata,
   createBreadcrumbSchema,
-  createServiceSchema,
+  createRegionalServiceSchema,
   createWebPageSchema,
 } from "@/lib/seo";
 
@@ -37,12 +38,19 @@ export default function SingaporePage() {
     path: "/singapore",
     about: ["contact center software Singapore", "cloud call center Singapore"],
   });
-  const serviceSchema = createServiceSchema({
+  const serviceSchema = createRegionalServiceSchema({
     name: "Contact Center Software Singapore",
     description,
     path: "/singapore",
+    country: "Singapore",
+    cities: ["Singapore"],
     serviceType: "Enterprise contact center software",
-    areaServed: ["Singapore"],
+    availableLanguage: ["English", "Mandarin", "Malay", "Tamil"],
+    keywords: [
+      "contact center software Singapore",
+      "cloud call center Singapore",
+      "PDPA contact center software",
+    ],
   });
 
   return (
@@ -54,6 +62,16 @@ export default function SingaporePage() {
         country="Singapore"
         countryCode="+65"
         headline="Enterprise Contact Center Software in"
+      />
+      <AiOverviewSection
+        title="Enterprise-Ready Contact Center Software for Singapore"
+        summary="Haloo Connect helps Singapore teams centralize customer communication operations with AI automation, omnichannel routing, and consistent service-quality monitoring."
+        bullets={[
+          "PDPA-conscious process design for regulated customer operations.",
+          "Omnichannel support across calls, WhatsApp, email, and SMS.",
+          "AI voice and workflow automation to improve first response time.",
+          "Operational analytics for workforce performance and SLA control.",
+        ]}
       />
     </>
   );

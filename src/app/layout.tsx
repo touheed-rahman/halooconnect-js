@@ -6,6 +6,7 @@ import {
   buildMetadata,
   DEFAULT_DESCRIPTION,
   organizationSchema,
+  softwareApplicationSchema,
   websiteSchema,
 } from "@/lib/seo";
 
@@ -37,9 +38,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="degFOW2kXMlqVyyiaL4yig"
+          async
+        />
+      </head>
       <body>
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
+        <JsonLd data={softwareApplicationSchema} />
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import HomePageNext from "@/next/pages/HomePageNext";
 import JsonLd from "@/next/components/JsonLd";
+import AiOverviewSection from "@/components/AiOverviewSection";
 import {
   buildMetadata,
   createBreadcrumbSchema,
@@ -96,6 +97,16 @@ export default function Home() {
       <JsonLd data={webPageSchema} />
       <JsonLd data={serviceSchema} />
       <HomePageNext />
+      <AiOverviewSection
+        title="What Haloo Connect Delivers for Enterprise Customer Operations"
+        summary="Haloo Connect is an AI-native cloud contact center platform built for enterprise teams that need one operational layer across inbound and outbound customer communication."
+        bullets={[
+          "Unified omnichannel stack for voice, WhatsApp, email, and SMS.",
+          "AI voice automation, IVR, and predictive dialing for speed and consistency.",
+          "Supervisor-grade analytics for SLA tracking, agent coaching, and performance improvement.",
+          "Deployment support across Singapore, UAE, Malaysia, Philippines, and India.",
+        ]}
+      />
       <section className="border-t border-border/60 bg-background py-12">
         <div className="container mx-auto max-w-4xl space-y-4">
           <h2 className="text-2xl font-bold text-foreground">

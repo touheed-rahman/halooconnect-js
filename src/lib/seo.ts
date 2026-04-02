@@ -132,10 +132,50 @@ export const websiteSchema = {
   "@id": `${SITE_URL}/#website`,
   name: SITE_NAME,
   url: SITE_URL,
+  description: DEFAULT_DESCRIPTION,
+  inLanguage: "en",
+  about: [
+    "AI contact center software",
+    "cloud call center platform",
+    "omnichannel customer communication",
+    "enterprise customer service automation",
+  ],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/blog?query={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
   publisher: {
     "@id": `${SITE_URL}/#organization`,
   },
-  inLanguage: "en",
+};
+
+export const softwareApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": `${SITE_URL}/#software`,
+  name: "Haloo Connect AI Contact Center Platform",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: SITE_URL,
+  description: DEFAULT_DESCRIPTION,
+  publisher: {
+    "@id": `${SITE_URL}/#organization`,
+  },
+  serviceArea: ["Singapore", "United Arab Emirates", "Malaysia", "Philippines", "India"],
+  featureList: [
+    "Omnichannel support for voice, WhatsApp, email, and SMS",
+    "AI voice automation and multilingual bot workflows",
+    "Predictive dialer and IVR orchestration",
+    "Real-time analytics and supervisor dashboards",
+    "CRM and business system integrations",
+  ],
+  offers: {
+    "@type": "Offer",
+    url: `${SITE_URL}/contact`,
+    availability: "https://schema.org/InStock",
+    description: "Pricing is tailored to deployment requirements. Contact sales for a quote.",
+  },
 };
 
 export function createBreadcrumbSchema(
@@ -193,5 +233,46 @@ export function createServiceSchema(input: {
     },
     areaServed: input.areaServed,
     availableChannel: ["Phone", "Email", "Web", "WhatsApp"],
+  };
+}
+
+export function createRegionalServiceSchema(input: {
+  name: string;
+  description: string;
+  path: string;
+  country: string;
+  cities: string[];
+  serviceType: string;
+  availableLanguage: string[];
+  keywords: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${SITE_URL}${input.path}#service`,
+    name: input.name,
+    description: input.description,
+    serviceType: input.serviceType,
+    url: `${SITE_URL}${input.path}`,
+    provider: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    areaServed: [
+      {
+        "@type": "Country",
+        name: input.country,
+      },
+      ...input.cities.map((city) => ({
+        "@type": "City",
+        name: city,
+      })),
+    ],
+    availableChannel: ["Phone", "Email", "Web", "WhatsApp"],
+    availableLanguage: input.availableLanguage,
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Customer support, sales, and operations teams",
+    },
+    keywords: input.keywords.join(", "),
   };
 }
