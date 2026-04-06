@@ -9,8 +9,6 @@ import {
   createWebPageSchema,
 } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 const description =
   "Enterprise contact center software in Singapore with omnichannel voice, WhatsApp, email, PDPA-conscious workflows, predictive dialer, IVR, and multilingual AI voice automation.";
 

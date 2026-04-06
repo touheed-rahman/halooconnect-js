@@ -7,8 +7,6 @@ import {
   createWebPageSchema,
 } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = buildMetadata({
   title: "About Haloo Connect | AI Contact Center Software Company",
   description:

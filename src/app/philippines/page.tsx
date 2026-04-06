@@ -9,8 +9,6 @@ import {
   createWebPageSchema,
 } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 const description =
   "BPO-friendly contact center software in the Philippines with cloud calling, omnichannel workflows, IVR, predictive dialer, analytics, WhatsApp, and AI automation.";
 

@@ -109,12 +109,12 @@ export default async function BlogPage() {
 
         <section className="border-y border-border/60 bg-muted/20 py-8">
           <div className="container">
-            <h2 className="text-xl font-semibold text-foreground">Latest Articles</h2>
+            <h2 className="text-xl font-semibold text-foreground">All Articles</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Browse recent insights on AI contact center operations and cloud customer service.
+              Crawlable index of every blog post for search engines and users.
             </p>
-            <ul className="mt-4 grid gap-2 md:grid-cols-2">
-              {data.slice(0, 8).map((post) => (
+            <ul className="mt-4 grid gap-2 md:grid-cols-2 lg:grid-cols-3">
+              {data.map((post) => (
                 <li key={post.id}>
                   <Link
                     href={`/blog/${post.slug}`}

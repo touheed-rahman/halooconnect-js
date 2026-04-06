@@ -9,8 +9,6 @@ import {
   createWebPageSchema,
 } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 const description =
   "Cloud call center software in Malaysia for omnichannel support, predictive dialer workflows, IVR, WhatsApp engagement, analytics, and AI voice automation.";
 

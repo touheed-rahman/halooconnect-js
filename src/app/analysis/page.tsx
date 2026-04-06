@@ -10,8 +10,6 @@ import {
   createWebPageSchema,
 } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = buildMetadata({
   title: "AI Contact Center Audit Tool | Readiness Analyzer",
   description:

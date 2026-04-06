@@ -9,8 +9,6 @@ import {
   createWebPageSchema,
 } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 const description =
   "AI-powered call center software for Dubai and the UAE with Arabic voice bot support, omnichannel routing, WhatsApp Business API, IVR, and predictive dialer automation.";
 

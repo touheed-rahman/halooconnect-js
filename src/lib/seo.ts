@@ -47,6 +47,7 @@ export function buildMetadata({
   }));
 
   return {
+    metadataBase: new URL(SITE_URL),
     title,
     description,
     keywords: [...DEFAULT_KEYWORDS, ...keywords],
