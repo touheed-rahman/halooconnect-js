@@ -43,8 +43,27 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta
+          name="google-site-verification"
+          content="iBuWTyODzMsfLnrTeeDLLPJp6aiR9tOllO_m6FfHfOc"
+        />
         <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <script
+          src="https://www.googletagmanager.com/gtag/js?id=G-1SWPLK7DD1"
+          async
+        />
+        <script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-1SWPLK7DD1');
+            `,
+          }}
+        />
         <script
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="degFOW2kXMlqVyyiaL4yig"
@@ -52,20 +71,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {/* Google Site Verification and Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-1SWPLK7DD1"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-1SWPLK7DD1');
-          `}
-        </Script>
         <Script
           id="jquery-cdn"
           src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"
