@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Providers } from "./providers";
 import JsonLd from "@/next/components/JsonLd";
@@ -46,6 +47,8 @@ export default function RootLayout({
           name="google-site-verification"
           content="iBuWTyODzMsfLnrTeeDLLPJp6aiR9tOllO_m6FfHfOc"
         />
+        <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <script
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="degFOW2kXMlqVyyiaL4yig"
@@ -53,6 +56,12 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Script
+          id="jquery-cdn"
+          src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+        />
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
         <JsonLd data={softwareApplicationSchema} />
