@@ -52,6 +52,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        {/* Google Site Verification and Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-1SWPLK7DD1"
           strategy="afterInteractive"
