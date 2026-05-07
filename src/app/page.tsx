@@ -25,6 +25,9 @@ export const metadata: Metadata = buildMetadata({
     "WhatsApp Business API software",
     "multilingual AI voice bot",
   ],
+  verification: {
+    google: "iBuWTyODzMsfLnrTeeDLLPJp6aiR9tOllO_m6FfHfOc",
+  },
 });
 
 const faqSchema = {
