@@ -53,6 +53,19 @@ export default function RootLayout({
       </head>
       <body>
         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-1SWPLK7DD1"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-1SWPLK7DD1');
+          `}
+        </Script>
+        <Script
           id="jquery-cdn"
           src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"
           strategy="lazyOnload"
